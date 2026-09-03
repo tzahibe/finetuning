@@ -2,13 +2,13 @@
   "TOTAL_EXAMPLES": 67560,
   "VALID_JSON": 67560,
   "INVALID_JSON": 0,
-  "UNIQUE_EXAMPLE_IDS": 46138,
+  "UNIQUE_EXAMPLE_IDS": 67560,
   "UNIQUE_SOURCE_PLAN_IDS": 16890,
   "DIFFICULTY_DISTRIBUTION": {
-    "C0": 16945,
-    "C2": 16816,
-    "C3": 16973,
-    "C1": 16826
+    "C0": 16890,
+    "C1": 16890,
+    "C2": 16890,
+    "C3": 16890
   },
   "HARD_CONSTRAINT_VIOLATIONS": 0,
   "HARD_OBSERVED_GEOMETRY": 0,
@@ -29,24 +29,24 @@
   },
   "TARGET_LEAKAGE_BY_DIFFICULTY": {
     "C0": {
-      "mean": 0.2196,
+      "mean": 0.2197,
       "p95": 0.25,
       "max": 0.3333
     },
     "C1": {
-      "mean": 0.2537,
+      "mean": 0.2536,
       "p95": 0.3125,
-      "max": 0.4348
+      "max": 0.4167
     },
     "C2": {
-      "mean": 0.308,
-      "p95": 0.3871,
-      "max": 0.5
+      "mean": 0.3084,
+      "p95": 0.3913,
+      "max": 0.4783
     },
     "C3": {
-      "mean": 0.3825,
+      "mean": 0.3831,
       "p95": 0.4783,
-      "max": 0.619
+      "max": 0.5909
     }
   },
   "V1_SCOPE_VISIBILITY": {
@@ -72,11 +72,11 @@
       "WINDOW_CONNECTION": 25340
     },
     "constraint_types": {
-      "DIRECT_ACCESS": 44068,
-      "REQUIRED_ROOM": 43962,
-      "ADJACENCY": 43901,
-      "ROOM_COUNT": 43866,
-      "TOTAL_AREA": 35550
+      "ROOM_COUNT": 44058,
+      "ADJACENCY": 43991,
+      "DIRECT_ACCESS": 43902,
+      "REQUIRED_ROOM": 43864,
+      "TOTAL_AREA": 35553
     },
     "bedrooms": {
       "0": 12,

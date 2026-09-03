@@ -1,7 +1,7 @@
 {
   "dataset_version": "0.4.1",
   "source_dataset": "BDivyesh/boomi-stage-a-text-spec",
-  "git_commit": "0da3703",
+  "git_commit": "edf1d8e",
   "split_seed": 20260904,
   "generation_seed": 42,
   "split_ratios": {
@@ -9,6 +9,10 @@
     "validation": 0.1,
     "test": 0.1
   },
+  "source_unique_plan_ids": 16891,
+  "spec_mismatch_plan_ids": [],
+  "rejected_source_plan_ids": 1,
+  "accepted_source_plan_ids": 16890,
   "splits": {
     "train": {
       "examples": 54044,
@@ -24,45 +28,23 @@
     }
   },
   "total_examples": 67560,
-  "total_unique_source_plan_ids": 16890,
-  "total_rejected": 4,
+  "unique_example_ids": 67560,
+  "difficulty_counts": {
+    "C0": 16890,
+    "C1": 16890,
+    "C2": 16890,
+    "C3": 16890
+  },
   "source_plan_split_leakage": 0,
   "rejected_detail": [
     {
       "plan_id": 15861,
-      "level": "L0",
       "split": "train",
       "reasons": [
         "processing_error"
       ],
-      "error": "ValidationError: 1 validation error for Site\narea_m2\n  Input should be greater than 0 [type=greater_than, input_value=0.0, input_type=float]\n    For further information visit https://errors.pydantic.dev/2.13/v/greater_than"
-    },
-    {
-      "plan_id": 15861,
-      "level": "L1",
-      "split": "train",
-      "reasons": [
-        "processing_error"
-      ],
-      "error": "ValidationError: 1 validation error for Site\narea_m2\n  Input should be greater than 0 [type=greater_than, input_value=0.0, input_type=float]\n    For further information visit https://errors.pydantic.dev/2.13/v/greater_than"
-    },
-    {
-      "plan_id": 15861,
-      "level": "L2",
-      "split": "train",
-      "reasons": [
-        "processing_error"
-      ],
-      "error": "ValidationError: 1 validation error for Site\narea_m2\n  Input should be greater than 0 [type=greater_than, input_value=0.0, input_type=float]\n    For further information visit https://errors.pydantic.dev/2.13/v/greater_than"
-    },
-    {
-      "plan_id": 15861,
-      "level": "L3",
-      "split": "train",
-      "reasons": [
-        "processing_error"
-      ],
-      "error": "ValidationError: 1 validation error for Site\narea_m2\n  Input should be greater than 0 [type=greater_than, input_value=0.0, input_type=float]\n    For further information visit https://errors.pydantic.dev/2.13/v/greater_than"
+      "error": "ValidationError: 1 validation error for Site\narea_m2\n  Input should be greater than 0 [type=greater_than, input_value=0.0, input_type=float]\n    For further information visit https://errors.pydantic.dev/2.13/v/greater_than",
+      "difficulty": "C0"
     }
   ]
 }
