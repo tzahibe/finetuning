@@ -27,7 +27,7 @@ dataset_info:
       - name: balconies
         dtype: int64
       - name: preferences
-        sequence: string
+        list: 'null'
     - name: site
       struct:
       - name: width_m
@@ -37,23 +37,23 @@ dataset_info:
       - name: area_m2
         dtype: float64
     - name: constraints
-      sequence:
+      list:
       - name: type
         dtype: string
       - name: target
         dtype: string
       - name: value
-        dtype: string
-      - name: unit
-        dtype: string
+        dtype: float64
       - name: priority
         dtype: string
       - name: source_type
         dtype: string
+      - name: unit
+        dtype: string
   - name: target
     struct:
     - name: program
-      sequence:
+      list:
       - name: type
         dtype: string
       - name: count
@@ -63,13 +63,13 @@ dataset_info:
       - name: zone
         dtype: string
     - name: zones
-      sequence:
+      list:
       - name: type
         dtype: string
       - name: room_types
-        sequence: string
+        list: string
     - name: relationships
-      sequence:
+      list:
       - name: a_type
         dtype: string
       - name: b_type
@@ -79,14 +79,28 @@ dataset_info:
       - name: source_type
         dtype: string
     - name: circulation
-      sequence: string
+      list: string
   splits:
   - name: train
+    num_bytes: 62248538
     num_examples: 54044
   - name: validation
+    num_bytes: 7739366
     num_examples: 6756
   - name: test
+    num_bytes: 7793056
     num_examples: 6760
+  download_size: 74547302
+  dataset_size: 77780960
+configs:
+- config_name: default
+  data_files:
+  - split: train
+    path: data/train-*
+  - split: validation
+    path: data/validation-*
+  - split: test
+    path: data/test-*
 ---
 
 # Architect AI Dataset
@@ -186,4 +200,4 @@ types/counts, some relationships, and total area.
 
 ## Not yet done
 
-No base-model baseline evaluation, no fine-tuning, not yet pushed to the Hub.
+No base-model baseline evaluation, no fine-tuning.
