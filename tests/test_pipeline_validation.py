@@ -15,10 +15,12 @@ from src.datasets.schema import (
 )
 from src.datasets.schema import RoomType
 from src.validation.dataset_qa import (
-    anti_leakage_ratio,
     assert_no_split_leakage,
+    constraint_coverage_ratio,
     find_constraint_violations,
     find_contradictions,
+    find_duplicate_relationships,
+    find_invariant_violations,
 )
 
 
@@ -116,11 +118,47 @@ def test_no_contradictions_in_consistent_constraints():
     assert find_contradictions([c1, c2]) == []
 
 
-def test_anti_leakage_ratio():
-    assert anti_leakage_ratio(0, 10) == 0.0
-    assert anti_leakage_ratio(5, 10) == 0.5
-    assert anti_leakage_ratio(10, 10) == 1.0
-    assert anti_leakage_ratio(0, 0) == 0.0
+def test_constraint_coverage_ratio():
+    assert constraint_coverage_ratio(0, 10) == 0.0
+    assert constraint_coverage_ratio(5, 10) == 0.5
+    assert constraint_coverage_ratio(10, 10) == 1.0
+    assert constraint_coverage_ratio(0, 0) == 0.0
+
+
+def test_duplicate_relationship_after_bad_ordering_is_flagged():
+    spec = ArchitecturalSpec(
+        program=[RoomProgram(type=RoomType.BEDROOM, count=1, area_per_room_m2=12.0, zone=ZoneType.PRIVATE)],
+        zones=[Zone(type=ZoneType.PRIVATE, room_types=[RoomType.BEDROOM])],
+        relationships=[
+            Relationship(a_type=RoomType.BEDROOM, b_type=RoomType.KITCHEN, relationship=RelationshipType.ADJACENT),
+            Relationship(a_type=RoomType.KITCHEN, b_type=RoomType.BEDROOM, relationship=RelationshipType.ADJACENT),
+        ],
+        metadata={"total_area_m2": 12.0},
+    )
+    example = ArchitectTrainingExample(
+        example_id="1", brief=Brief(), site=Site(width_m=1.0, length_m=1.0, area_m2=1.0), target_spec=spec
+    )
+    assert len(find_duplicate_relationships(example)) == 1
+
+
+def test_hard_observed_geometry_constraint_is_flagged():
+    c = Constraint(
+        id="adjacency:0",
+        type=ConstraintType.ADJACENCY,
+        target="BEDROOM<->KITCHEN",
+        priority=Priority.HARD,  # invalid: observed geometry must be SOFT
+        source_type=SourceType.OBSERVED_GEOMETRY,
+        source="test",
+    )
+    violations = find_invariant_violations(_example([c]))
+    assert any("HARD + OBSERVED_GEOMETRY" in v for v in violations)
+
+
+def test_brief_bedroom_count_mismatch_is_flagged():
+    example = _example([])
+    example.brief.bedrooms = 5  # target_spec program only has 2 BEDROOM
+    violations = find_invariant_violations(example)
+    assert any("brief.bedrooms" in v for v in violations)
 
 
 def test_split_leakage_detected():

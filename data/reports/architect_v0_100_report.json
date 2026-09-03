@@ -1,17 +1,43 @@
 {
-  "dataset_version": "0.2.0",
+  "dataset_version": "0.3.0",
   "source_dataset": "BDivyesh/boomi-stage-a-text-spec",
   "source_split": "train",
   "source_level": "L3",
-  "git_commit": "a35f71f",
+  "git_commit": "c9f3bdc",
   "requested_samples": 100,
-  "accepted_examples": 100,
-  "rejected_examples": 0,
+  "TOTAL_EXAMPLES": 100,
+  "VALID_EXAMPLES": 100,
+  "INVALID_EXAMPLES": 0,
+  "CONTRADICTIONS": 0,
+  "HARD_CONSTRAINT_VIOLATIONS": 0,
+  "UNKNOWN_TYPES": 0,
+  "AREA_INCONSISTENCIES": 1,
+  "DUPLICATE_RELATIONSHIPS": 0,
+  "SPLIT_LEAKAGE": 0,
+  "TARGET_LEAKAGE_WARNINGS": 0,
+  "OUTLIER_WARNINGS": 1,
   "rejection_reasons": {},
-  "anti_leakage_ratio": {
-    "mean": 0.173,
-    "max": 0.471,
-    "n_above_0.8": 0
+  "constraint_coverage_ratio_by_difficulty": {
+    "C0": {
+      "mean": 0.0,
+      "max": 0.0,
+      "n": 20
+    },
+    "C1": {
+      "mean": 0.079,
+      "max": 0.133,
+      "n": 24
+    },
+    "C2": {
+      "mean": 0.201,
+      "max": 0.333,
+      "n": 30
+    },
+    "C3": {
+      "mean": 0.348,
+      "max": 0.533,
+      "n": 26
+    }
   },
   "area_consistency_diff_m2": {
     "mean": 1.036,

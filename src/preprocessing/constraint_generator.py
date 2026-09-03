@@ -109,10 +109,41 @@ def sample_constraints(pool: list[Constraint], difficulty: DifficultyLevel, rng:
 
     Caps below the full pool size (when the pool is large enough to allow it) so a
     variant never exposes every fact the parser extracted about the target plan.
+
+    Stratifies by constraint type (Task 5: C0-C3 must vary in constraint-type
+    diversity, not just count) - round-robins across REQUIRED_ROOM/ROOM_COUNT/
+    TOTAL_AREA/ADJACENCY/DIRECT_ACCESS in a per-call shuffled order, rather than a
+    flat random sample that could land on e.g. eight ROOM_COUNT facts and nothing
+    else.
     """
     lo, hi = _SAMPLE_SIZES[difficulty]
     cap = min(hi, len(pool))
     if difficulty != DifficultyLevel.C0 and cap >= len(pool) and len(pool) > lo:
         cap -= 1
     size = rng.randint(lo, cap) if cap > lo else cap
-    return rng.sample(pool, size) if size else []
+    if size == 0:
+        return []
+
+    by_type: dict[ConstraintType, list[Constraint]] = {}
+    for c in pool:
+        by_type.setdefault(c.type, []).append(c)
+    for group in by_type.values():
+        rng.shuffle(group)
+    type_order = list(by_type.keys())
+    rng.shuffle(type_order)
+
+    selected: list[Constraint] = []
+    pointers = {t: 0 for t in type_order}
+    while len(selected) < size:
+        progressed = False
+        for t in type_order:
+            if len(selected) >= size:
+                break
+            p = pointers[t]
+            if p < len(by_type[t]):
+                selected.append(by_type[t][p])
+                pointers[t] = p + 1
+                progressed = True
+        if not progressed:
+            break
+    return selected

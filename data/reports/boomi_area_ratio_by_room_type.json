@@ -1,66 +1,1288 @@
 {
-  "BALCONY": {
-    "count": 11466,
-    "mean_ratio": 0.053,
-    "median_ratio": 0.0458,
-    "p95_ratio": 0.1058,
-    "p99_ratio": 0.1681,
-    "max_ratio": 0.5334
+  "formula": "room_area_ratio = (room_program[type].count * room_program[type].target_area_m2) / total_area_m2",
+  "by_room_type": {
+    "BALCONY": {
+      "count": 11466,
+      "mean_ratio": 0.0823,
+      "median_ratio": 0.0693,
+      "p01_ratio": 0.0201,
+      "p05_ratio": 0.029,
+      "p95_ratio": 0.1712,
+      "p99_ratio": 0.2584,
+      "max_ratio": 0.5334
+    },
+    "BATH": {
+      "count": 14891,
+      "mean_ratio": 0.0976,
+      "median_ratio": 0.0953,
+      "p01_ratio": 0.0564,
+      "p05_ratio": 0.0677,
+      "p95_ratio": 0.1363,
+      "p99_ratio": 0.1604,
+      "max_ratio": 0.2462
+    },
+    "BED ROOM": {
+      "count": 14889,
+      "mean_ratio": 0.3757,
+      "median_ratio": 0.3812,
+      "p01_ratio": 0.1675,
+      "p05_ratio": 0.2441,
+      "p95_ratio": 0.4792,
+      "p99_ratio": 0.5201,
+      "max_ratio": 0.7702
+    },
+    "KITCHEN": {
+      "count": 14781,
+      "mean_ratio": 0.0944,
+      "median_ratio": 0.0889,
+      "p01_ratio": 0.0431,
+      "p05_ratio": 0.0564,
+      "p95_ratio": 0.1521,
+      "p99_ratio": 0.1905,
+      "max_ratio": 0.3765
+    },
+    "LIVING": {
+      "count": 14890,
+      "mean_ratio": 0.3605,
+      "median_ratio": 0.3578,
+      "p01_ratio": 0.2201,
+      "p05_ratio": 0.2681,
+      "p95_ratio": 0.4607,
+      "p99_ratio": 0.5116,
+      "max_ratio": 0.789
+    },
+    "STORE": {
+      "count": 1551,
+      "mean_ratio": 0.0306,
+      "median_ratio": 0.0207,
+      "p01_ratio": 0.0059,
+      "p05_ratio": 0.009,
+      "p95_ratio": 0.0865,
+      "p99_ratio": 0.1011,
+      "max_ratio": 0.1295
+    },
+    "PARKING": {
+      "count": 288,
+      "mean_ratio": 0.2002,
+      "median_ratio": 0.1996,
+      "p01_ratio": 0.067,
+      "p05_ratio": 0.1016,
+      "p95_ratio": 0.2941,
+      "p99_ratio": 0.5218,
+      "max_ratio": 0.5983
+    },
+    "STAIR": {
+      "count": 592,
+      "mean_ratio": 0.0487,
+      "median_ratio": 0.034,
+      "p01_ratio": 0.0036,
+      "p05_ratio": 0.0078,
+      "p95_ratio": 0.132,
+      "p99_ratio": 0.2239,
+      "max_ratio": 0.3787
+    }
   },
-  "BATH": {
-    "count": 14891,
-    "mean_ratio": 0.043,
-    "median_ratio": 0.0421,
-    "p95_ratio": 0.0615,
-    "p99_ratio": 0.0776,
-    "max_ratio": 0.2462
-  },
-  "BED ROOM": {
-    "count": 14889,
-    "mean_ratio": 0.1693,
-    "median_ratio": 0.1656,
-    "p95_ratio": 0.2581,
-    "p99_ratio": 0.3027,
-    "max_ratio": 0.5139
-  },
-  "KITCHEN": {
-    "count": 14781,
-    "mean_ratio": 0.0942,
-    "median_ratio": 0.0887,
-    "p95_ratio": 0.1521,
-    "p99_ratio": 0.1905,
-    "max_ratio": 0.3765
-  },
-  "LIVING": {
-    "count": 14890,
-    "mean_ratio": 0.3577,
-    "median_ratio": 0.3567,
-    "p95_ratio": 0.4599,
-    "p99_ratio": 0.5106,
-    "max_ratio": 0.789
-  },
-  "STORE": {
-    "count": 1551,
-    "mean_ratio": 0.0304,
-    "median_ratio": 0.0206,
-    "p95_ratio": 0.0859,
-    "p99_ratio": 0.1011,
-    "max_ratio": 0.1295
-  },
-  "PARKING": {
-    "count": 288,
-    "mean_ratio": 0.1948,
-    "median_ratio": 0.1936,
-    "p95_ratio": 0.2935,
-    "p99_ratio": 0.4823,
-    "max_ratio": 0.5983
-  },
-  "STAIR": {
-    "count": 592,
-    "mean_ratio": 0.0458,
-    "median_ratio": 0.0325,
-    "p95_ratio": 0.1254,
-    "p99_ratio": 0.2239,
-    "max_ratio": 0.3787
-  }
+  "anomalies_above_p99": [
+    {
+      "plan_id": 9656,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.789,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 6692,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.7702,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 4590,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.7698,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 11038,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.762,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 2223,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.7003,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 16118,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.6993,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 5340,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.6959,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 7620,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.6796,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 3363,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.6767,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 2220,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.6702,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 10824,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.6641,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 10727,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.6611,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 10217,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.6569,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 5678,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.6559,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 1059,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.6461,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 6427,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.6453,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 10826,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.6434,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 997,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.6417,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 529,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.641,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 15059,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.635,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 15850,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.6217,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 4612,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.6216,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 16602,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.618,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 4790,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.6162,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 7622,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.6136,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 15204,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.6106,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 13296,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.6103,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 15362,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.6101,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 9347,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.6084,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 14290,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.6082,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 12033,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.606,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 244,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.6056,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 11208,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.6042,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 15471,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.6026,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 11901,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.6011,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 11746,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.6007,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 15852,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.6001,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 11676,
+      "room_type": "PARKING",
+      "room_area_ratio": 0.5983,
+      "room_type_p99_ratio": 0.5218
+    },
+    {
+      "plan_id": 10218,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5977,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 5677,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5972,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 3221,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5969,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 4928,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5964,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 13612,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5957,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 16382,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5944,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 5870,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5941,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 5831,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5932,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 15457,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5928,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 5363,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5917,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 11185,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5915,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 5524,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5908,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 8724,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5904,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 4945,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5903,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 2219,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5882,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 12076,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5876,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 6292,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.587,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 4117,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5863,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 4118,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.586,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 3935,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5849,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 10900,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5848,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 10456,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5828,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 6938,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5818,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 5113,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5801,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 15472,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.579,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 10365,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5783,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 10362,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.578,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 16730,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5778,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 16309,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5766,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 14702,
+      "room_type": "PARKING",
+      "room_area_ratio": 0.5764,
+      "room_type_p99_ratio": 0.5218
+    },
+    {
+      "plan_id": 4052,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.576,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 10922,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5759,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 16700,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5759,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 5067,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5753,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 7366,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5747,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 4667,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5735,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 17008,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5724,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 15878,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5715,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 1216,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5708,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 16667,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5702,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 5315,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5699,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 10944,
+      "room_type": "PARKING",
+      "room_area_ratio": 0.5695,
+      "room_type_p99_ratio": 0.5218
+    },
+    {
+      "plan_id": 5334,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5689,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 5868,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5687,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 6451,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5686,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 10216,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5681,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 5897,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5677,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 13774,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5675,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 7395,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5674,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 9847,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5665,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 6659,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5657,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 6280,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5656,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 14288,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5649,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 9170,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5636,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 2464,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5635,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 4112,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5633,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 10508,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5627,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 13324,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5617,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 10895,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5613,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 5773,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5607,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 3034,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5598,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 16164,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5597,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 11886,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5583,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 13882,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5579,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 5534,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5578,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 6859,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5562,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 5815,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5559,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 14332,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5553,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 5948,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5549,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 8153,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5549,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 4926,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5547,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 9979,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5546,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 6311,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5536,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 15858,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5532,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 7544,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5529,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 4857,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5525,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 7824,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5516,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 1219,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5513,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 3674,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5513,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 5516,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5513,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 16725,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5506,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 6153,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5504,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 3390,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5503,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 6306,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5502,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 11426,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5499,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 16021,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5496,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 580547,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5496,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 11735,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5495,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 6279,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5494,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 16939,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5492,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 13294,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5486,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 3760,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5484,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 717,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5483,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 14124,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5482,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 12789,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5478,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 11104,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5468,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 6334,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5464,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 16264,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5458,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 12852,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5456,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 14067,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5455,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 14254,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5455,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 16320,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5454,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 6869,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5453,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 16265,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5439,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 15577,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5437,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 1239,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5436,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 15058,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5434,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 3035,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5423,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 6861,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5422,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 8075,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.542,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 9936,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5417,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 15373,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5416,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 2147,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5414,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 11204,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5413,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 15891,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5408,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 13671,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5408,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 11883,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5404,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 12310,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5397,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 7665,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5395,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 11720,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5394,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 2221,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5392,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 10701,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5389,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 9846,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5386,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 5938,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5384,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 16670,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5383,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 6798,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5383,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 10686,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5383,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 4712,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5383,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 12918,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.538,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 4498,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.538,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 6317,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5364,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 692447,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5363,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 4499,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5358,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 9428,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5358,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 15596,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5356,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 868043,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5355,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 608,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5352,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 16669,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5352,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 14388,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5348,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 6437,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5347,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 5215,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5344,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 16750,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5343,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 6689,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5343,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 6870,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5341,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 301158,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5341,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 11406,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5338,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 16824,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5336,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 10471,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5336,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 1531,
+      "room_type": "BALCONY",
+      "room_area_ratio": 0.5334,
+      "room_type_p99_ratio": 0.2584
+    },
+    {
+      "plan_id": 8503,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5328,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 6584,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5328,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 7666,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5328,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 4833,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5325,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 884309,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5324,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 1698,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5324,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 7363,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5317,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 4947,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5315,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 5950,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5312,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 4529,
+      "room_type": "LIVING",
+      "room_area_ratio": 0.5312,
+      "room_type_p99_ratio": 0.5116
+    },
+    {
+      "plan_id": 10001,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5311,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 16347,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5309,
+      "room_type_p99_ratio": 0.5201
+    },
+    {
+      "plan_id": 16346,
+      "room_type": "BED ROOM",
+      "room_area_ratio": 0.5308,
+      "room_type_p99_ratio": 0.5201
+    }
+  ],
+  "total_anomalies_above_p99": 734
 }

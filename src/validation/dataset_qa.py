@@ -1,4 +1,6 @@
-from src.datasets.schema import ArchitectTrainingExample, Constraint, ConstraintType
+from src.datasets.schema import ArchitectTrainingExample, Constraint, ConstraintType, Priority, RoomType, SourceType
+
+AREA_CONSISTENCY_TOLERANCE_M2 = 5.0  # source-inherent rounding noise, see DATA_CONTRACT.md
 
 
 def find_constraint_violations(example: ArchitectTrainingExample) -> list[str]:
@@ -63,10 +65,66 @@ def find_contradictions(constraints: list[Constraint]) -> list[str]:
     return contradictions
 
 
-def anti_leakage_ratio(n_sampled_constraints: int, pool_size: int) -> float:
-    """Fraction of the full observed-fact pool exposed as input constraints (Task 37).
-    0.0 = no facts exposed (Brief only). 1.0 = every extractable fact exposed. High
-    values mean the example teaches "copy the input" rather than "design a plan".
+def find_duplicate_relationships(example: ArchitectTrainingExample) -> list[str]:
+    """Flags (a_type, b_type, relationship) triples that appear more than once after
+    canonicalization (Task 7) - should be empty if relationship_canonicalizer ran.
+    """
+    seen: dict[tuple, int] = {}
+    for r in example.target_spec.relationships:
+        a, b = sorted([r.a_type.value, r.b_type.value])
+        key = (a, b, r.relationship.value)
+        seen[key] = seen.get(key, 0) + 1
+    return [f"duplicate relationship {k}: appears {v} times" for k, v in seen.items() if v > 1]
+
+
+def find_invariant_violations(example: ArchitectTrainingExample) -> list[str]:
+    """Task 2's explicit per-example invariant checks, beyond schema-level (pydantic)
+    validation and the constraint/contradiction checks above.
+    """
+    violations = []
+    spec = example.target_spec
+    brief = example.brief
+
+    program_area_sum = sum(rp.count * rp.area_per_room_m2 for rp in spec.program)
+    if brief.target_area_m2 is not None and abs(program_area_sum - brief.target_area_m2) > AREA_CONSISTENCY_TOLERANCE_M2:
+        violations.append(
+            f"sum(program.count*area_per_room_m2)={program_area_sum:.1f} too far from brief.target_area_m2={brief.target_area_m2}"
+        )
+
+    spec_total = spec.metadata.get("total_area_m2")
+    if brief.target_area_m2 is not None and spec_total is not None:
+        if abs(spec_total - brief.target_area_m2) > 1e-6:
+            violations.append(f"target_spec.metadata.total_area_m2={spec_total} != brief.target_area_m2={brief.target_area_m2}")
+
+    if example.site.area_m2 <= 0:
+        violations.append(f"site.area_m2={example.site.area_m2} is not positive")
+
+    room_counts = {rp.type.value: rp.count for rp in spec.program}
+    for field_name, room_types in (
+        ("bedrooms", (RoomType.BEDROOM.value, RoomType.MASTER_BEDROOM.value)),
+        ("bathrooms", (RoomType.BATHROOM.value, RoomType.WC.value)),
+        ("balconies", (RoomType.BALCONY.value,)),
+    ):
+        brief_value = getattr(brief, field_name)
+        spec_value = sum(room_counts.get(t, 0) for t in room_types)
+        if brief_value is not None and brief_value != spec_value:
+            violations.append(f"brief.{field_name}={brief_value} != target_spec program count {spec_value}")
+
+    for c in example.constraints:
+        if c.source_type == SourceType.OBSERVED_GEOMETRY and c.priority == Priority.HARD:
+            violations.append(f"{c.id}: HARD + OBSERVED_GEOMETRY is not allowed (observed facts must be SOFT)")
+
+    violations.extend(find_constraint_violations(example))
+    violations.extend(find_duplicate_relationships(example))
+
+    return violations
+
+
+def constraint_coverage_ratio(n_sampled_constraints: int, pool_size: int) -> float:
+    """Fraction of the full observed-fact pool exposed as input constraints (Task 4/37):
+    facts-from-target-that-appear-in-input / total-facts-in-target. 0.0 = no facts
+    exposed (Brief only). 1.0 = every extractable fact exposed - an example teaching
+    "copy the input" rather than "design a plan".
     """
     if pool_size == 0:
         return 0.0
