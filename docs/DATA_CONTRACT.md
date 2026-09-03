@@ -11,11 +11,52 @@ verification.
 
 | Field | Meaning | Source | Notes |
 |---|---|---|---|
-| `brief.target_area_m2` | Built/program area (sum of all room areas) | `spec.total_area_m2` | Verified: `spec.total_area_m2 == sum(room_program[i].count * room_program[i].target_area_m2)` almost exactly (mean residual ~0 over 500 sampled plans) |
+| `brief.target_area_m2` | Built/program area (sum of all room areas) | `spec.total_area_m2` | Close to but **not always exactly equal** to `sum(room_program[i].count * room_program[i].target_area_m2)` — see "Area tolerance" below for the exact, full-dataset-measured distribution and why this is expected |
 | `site.area_m2` | Site/plot area | `spec.plot.area_m2` | This — **not** `total_area_m2` — is what the BOOMI caption's stated area number matches (stdev 0.3 m² vs `plot.area_m2`, vs 37.7 m² against `total_area_m2`, n=242 parsed captions) |
 | `site.width_m`, `site.length_m` | Bounding dimensions of the site | `spec.plot.width_mm/1000`, `depth_mm/1000` | **Not** used to compute `site.area_m2`. Verified `width_m * length_m != area_m2` for ~98% of sampled plans (site is not a simple rectangle) |
 | `program[].area_per_room_m2` | Area of **one** room of that type in this plan | `spec.room_program[].target_area_m2` | Uniform across all instances of the type in a plan — BOOMI gives only one number per type, not per instance. Not a total, not an average of varying values (renamed from BOOMI's own `target_area_m2` to avoid that ambiguity) |
 | `program[].count` | Number of rooms of that type | `spec.room_program[].count` | |
+
+## Area tolerance
+
+`brief.target_area_m2` (BOOMI's `total_area_m2`) and `sum(program[].count *
+area_per_room_m2)` are **not required to be exactly equal**. Both are legitimate,
+directly-sourced numbers, but BOOMI's own `total_area_m2` and per-type room
+areas were independently rounded/generated, so a small residual is expected.
+
+**Cause, confirmed (not data loss):** measured over all 14,891 unique BOOMI
+plans (`abs(total_area_m2 - sum(count*area_per_room_m2))`):
+
+| | absolute (m²) | relative (% of total_area_m2) |
+|---|---|---|
+| mean | 0.96 | 0.81% |
+| median | 0.78 | 0.69% |
+| p95 | 2.45 | 1.95% |
+| p99 | 3.50 | 2.53% |
+| max | 7.47 | 3.97% |
+
+The relative error is small and bounded across the **entire** dataset (never
+above ~4%) — the signature of independent source-side floating-point
+rounding between two already-computed numbers, not missing or corrupted
+room data (which would show large, erratic, or one-sided errors instead).
+Full distribution in `data/reports/boomi_area_consistency.json`.
+
+**Tolerance policy** (`src/validation/dataset_qa.py::area_within_tolerance`):
+a pair of area values is considered consistent if `abs_diff <= 5.0 m²` **OR**
+`abs_diff / max(a, b) <= 5%` — either bound alone would cover the entire
+observed distribution with margin; combining them additionally protects
+small-total-area plans (where a tiny absolute rounding could look large as a
+percentage) and large plans (where a few m² is negligible) at both ends.
+**Never use strict equality here.** Examples outside tolerance are flagged
+(`AREA_OUTSIDE_TOLERANCE` in the generation report) for manual review, never
+auto-rejected or auto-corrected.
+
+**Float precision policy**: internal storage (`data/processed/*.jsonl`) keeps
+**full, unrounded source precision** for every area/dimension field — this is
+the traceability copy. Rounding (site dimensions 2dp, all areas 1dp) is
+applied only inside `src/datasets/sft_format.py::to_sft_pair()`, i.e. at the
+boundary where an example is turned into what actually gets tokenized for
+training — never earlier in the pipeline.
 
 ## Room instances and relationships
 

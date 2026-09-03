@@ -12,10 +12,16 @@ from src.preprocessing.constraint_generator import DifficultyLevel, build_constr
 from src.preprocessing.relationship_canonicalizer import canonicalize_relationships
 from src.preprocessing.site_generator import generate_site
 from src.preprocessing.spec_generator import generate_spec
-from src.validation.dataset_qa import constraint_coverage_ratio, find_contradictions, find_invariant_violations
+from src.validation.dataset_qa import (
+    area_within_tolerance,
+    classify_constraint_violations,
+    constraint_coverage_ratio,
+    find_contradictions,
+    find_invariant_violations,
+)
 
 DIFFICULTY_LEVELS = list(DifficultyLevel)
-PIPELINE_VERSION = "0.3.0"  # bump when normalization/schema/constraint logic changes
+PIPELINE_VERSION = "0.4.0"  # bump when normalization/schema/constraint logic changes
 DATASET_SOURCE = "BDivyesh/boomi-stage-a-text-spec"
 LEAKAGE_WARNING_THRESHOLD = 0.8
 
@@ -60,7 +66,15 @@ def build_example(row: dict, difficulty: DifficultyLevel, rng: random.Random) ->
 
     invariant_violations = find_invariant_violations(example)
     contradictions = find_contradictions(constraints)
+    hard_violations, soft_violations = classify_constraint_violations(example)
     coverage = constraint_coverage_ratio(len(constraints), len(pool))
+    program_area_sum = sum(rp.count * rp.area_per_room_m2 for rp in target_spec.program)
+    area_error_pct = (
+        abs(program_area_sum - brief.target_area_m2) / brief.target_area_m2 * 100
+        if brief.target_area_m2
+        else 0.0
+    )
+
     qa_info = {
         "plan_id": record.plan_id,
         "difficulty": difficulty.value,
@@ -69,9 +83,13 @@ def build_example(row: dict, difficulty: DifficultyLevel, rng: random.Random) ->
         "constraint_coverage_ratio": round(coverage, 3),
         "invariant_violations": invariant_violations,
         "contradictions": contradictions,
+        "hard_constraint_violations": hard_violations,
+        "soft_constraint_target_mismatches": soft_violations,
         "unknown_room_types": sorted(record.unknown_room_types),
         "unknown_relationship_types": sorted(record.unknown_relationship_types),
-        "area_consistency_diff_m2": record.area_consistency_diff_m2,
+        "area_error_m2": round(record.area_consistency_diff_m2, 3),
+        "area_error_pct": round(area_error_pct, 3),
+        "area_within_tolerance": area_within_tolerance(program_area_sum, brief.target_area_m2),
     }
     return example, qa_info
 
@@ -86,8 +104,9 @@ def build_dataset(
 ) -> dict:
     """Builds up to n_samples ArchitectTrainingExamples from distinct BOOMI plans, writes
     them as JSONL, and returns/writes a generation report (Task 56). Examples with
-    unknown vocabulary, internal contradictions, or invariant violations are rejected
-    (not silently dropped - logged in the report, Task 57) rather than written out.
+    unknown vocabulary, internal contradictions, or invariant violations (including
+    HARD constraint violations, but NOT area-tolerance - see area_within_tolerance)
+    are rejected (not silently dropped - logged in the report, Task 57).
     """
     ds = load_dataset(DATASET_SOURCE, split=split)
     ds = ds.filter(lambda r: r["level"] == level)
@@ -136,6 +155,14 @@ def build_dataset(
     return report
 
 
+def _percentile(values: list[float], p: float) -> float:
+    if not values:
+        return 0.0
+    s = sorted(values)
+    idx = min(len(s) - 1, max(0, round(p * (len(s) - 1))))
+    return s[idx]
+
+
 def _build_acceptance_report(
     qa_records: list[dict], rejected: list[dict], accepted: int, n_samples: int, split: str, level: str
 ) -> dict:
@@ -146,13 +173,7 @@ def _build_acceptance_report(
     duplicate_relationship_count = sum(
         1 for r in qa_records if any("duplicate relationship" in v for v in r["invariant_violations"])
     )
-    # Only REQUIRED_ROOM/ROOM_COUNT constraints are HARD in this pipeline (see
-    # docs/DATA_CONTRACT.md) - ADJACENCY/DIRECT_ACCESS are SOFT and excluded here.
-    hard_constraint_violation_count = sum(
-        1
-        for r in qa_records
-        if any(v.startswith(("required_room:", "room_count:")) for v in r["invariant_violations"])
-    )
+    area_errors_m2 = [r["area_error_m2"] for r in qa_records]
 
     return {
         "dataset_version": PIPELINE_VERSION,
@@ -161,20 +182,24 @@ def _build_acceptance_report(
         "source_level": level,
         "git_commit": _git_commit(),
         "requested_samples": n_samples,
-        # Acceptance gate (Task 12)
+        # Acceptance gate (Task 12 / area-tolerance follow-up)
         "TOTAL_EXAMPLES": len(qa_records),
         "VALID_EXAMPLES": accepted,
         "INVALID_EXAMPLES": len(rejected),
-        "CONTRADICTIONS": sum(1 for r in qa_records if r["contradictions"]),
-        "HARD_CONSTRAINT_VIOLATIONS": hard_constraint_violation_count,
+        "HARD_CONSTRAINT_VIOLATIONS": sum(1 for r in qa_records if r["hard_constraint_violations"]),
+        "SOFT_CONSTRAINT_TARGET_MISMATCHES": sum(1 for r in qa_records if r["soft_constraint_target_mismatches"]),
         "UNKNOWN_TYPES": sum(1 for r in qa_records if r["unknown_room_types"] or r["unknown_relationship_types"]),
-        "AREA_INCONSISTENCIES": sum(1 for r in qa_records if r["area_consistency_diff_m2"] > 3.0),
         "DUPLICATE_RELATIONSHIPS": duplicate_relationship_count,
+        "CONTRADICTIONS": sum(1 for r in qa_records if r["contradictions"]),
         "SPLIT_LEAKAGE": 0,  # this build draws from a single split; see tests/test_split_leakage.py
         "TARGET_LEAKAGE_WARNINGS": sum(
             1 for r in qa_records if r["constraint_coverage_ratio"] > LEAKAGE_WARNING_THRESHOLD
         ),
-        "OUTLIER_WARNINGS": sum(1 for r in qa_records if r["area_consistency_diff_m2"] > 3.0),
+        "AREA_ERROR_MEAN": round(sum(area_errors_m2) / len(area_errors_m2), 3) if area_errors_m2 else 0.0,
+        "AREA_ERROR_P95": round(_percentile(area_errors_m2, 0.95), 3),
+        "AREA_ERROR_MAX": round(max(area_errors_m2), 3) if area_errors_m2 else 0.0,
+        "AREA_TOLERANCE_POLICY": "abs<=5.0m2 OR rel<=5% (see docs/DATA_CONTRACT.md Area tolerance)",
+        "AREA_OUTSIDE_TOLERANCE": sum(1 for r in qa_records if not r["area_within_tolerance"]),
         "rejection_reasons": _count_reasons(rejected),
         "constraint_coverage_ratio_by_difficulty": {
             d: {
@@ -183,12 +208,6 @@ def _build_acceptance_report(
                 "n": len(vals),
             }
             for d, vals in coverage_by_difficulty.items()
-        },
-        "area_consistency_diff_m2": {
-            "mean": round(sum(r["area_consistency_diff_m2"] for r in qa_records) / len(qa_records), 3)
-            if qa_records
-            else 0.0,
-            "max": max((r["area_consistency_diff_m2"] for r in qa_records), default=0.0),
         },
         "rejected_detail": rejected[:50],
     }

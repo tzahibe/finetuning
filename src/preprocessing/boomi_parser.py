@@ -5,10 +5,9 @@ from src.datasets.schema import RelationshipType, RoomType
 from src.preprocessing.relationship_normalizer import normalize_relationship
 from src.preprocessing.room_normalizer import normalize_room_type
 
-# Float precision policy (SKILL.md audit Task 28): site dimensions get 2 decimals,
-# total/building areas get 1 decimal, per-room-type areas get 1 decimal.
-SITE_DIM_PRECISION = 2
-AREA_PRECISION = 1
+# NOTE: values below are kept at full source precision (unrounded) for internal
+# traceability - see docs/DATA_CONTRACT.md "Float precision policy". Rounding is
+# applied only at SFT-serialization time (src/datasets/sft_format.py), not here.
 
 
 @dataclass
@@ -67,7 +66,7 @@ def parse_boomi_record(row: dict) -> ParsedBoomiRecord:
             ParsedRoomProgram(
                 type=room_type,
                 count=rp["count"],
-                area_per_room_m2=round(rp["target_area_m2"], AREA_PRECISION),
+                area_per_room_m2=rp["target_area_m2"],
             )
         )
 
@@ -95,10 +94,10 @@ def parse_boomi_record(row: dict) -> ParsedBoomiRecord:
         level=row["level"],
         caption=row["caption"],
         bhk_label=spec.get("bhk_label", ""),
-        total_area_m2=round(total_area_m2, AREA_PRECISION),
-        site_width_m=round(plot["width_mm"] / 1000.0, SITE_DIM_PRECISION),
-        site_length_m=round(plot["depth_mm"] / 1000.0, SITE_DIM_PRECISION),
-        site_area_m2=round(plot["area_m2"], SITE_DIM_PRECISION),
+        total_area_m2=total_area_m2,
+        site_width_m=plot["width_mm"] / 1000.0,
+        site_length_m=plot["depth_mm"] / 1000.0,
+        site_area_m2=plot["area_m2"],
         room_program=room_program,
         relationships=relationships,
         area_consistency_diff_m2=round(abs(total_area_m2 - program_area_sum), 3),

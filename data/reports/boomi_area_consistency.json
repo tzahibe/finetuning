@@ -1,6 +1,25 @@
 {
-  "note": "source_total_area_m2 = built/program area (verified = sum(count*area_per_room) almost exactly). caption_area_m2 = site/plot area, NOT built area (verified: caption text matches plot_area_m2, stdev 0.3m2, vs total_area_m2, stdev 37.7m2, over 242 parsed captions). plot_area_m2 != width_m*length_m for ~98% of plans (non-rectangular sites) - never recompute it.",
-  "records": [
+  "note": "source_total_area_m2 = built/program area; NOT always exactly equal to sum(count*area_per_room) - see 'distribution_full_dataset' below, and docs/DATA_CONTRACT.md 'Area tolerance' for the tolerance policy this justifies. caption_area_m2 = site/plot area, NOT built area (verified: caption text matches plot_area_m2, stdev 0.3m2, vs total_area_m2, stdev 37.7m2, over 242 parsed captions). plot_area_m2 != width_m*length_m for ~98% of plans (non-rectangular sites) - never recompute it.",
+  "distribution_full_dataset": {
+    "n_unique_plans": 14891,
+    "absolute_diff_m2": {
+      "mean": 0.9631,
+      "median": 0.781,
+      "p95": 2.45,
+      "p99": 3.497,
+      "max": 7.466
+    },
+    "relative_diff_pct": {
+      "mean": 0.807,
+      "median": 0.6913,
+      "p95": 1.951,
+      "p99": 2.5279,
+      "max": 3.9693
+    },
+    "n_above_5m2_absolute": 20,
+    "n_above_5pct_relative": 0
+  },
+  "sampled_records": [
     {
       "plan_id": 6729,
       "source_total_area_m2": 63.75,

@@ -1,6 +1,25 @@
 from src.datasets.schema import ArchitectTrainingExample, Constraint, ConstraintType, Priority, RoomType, SourceType
 
-AREA_CONSISTENCY_TOLERANCE_M2 = 5.0  # source-inherent rounding noise, see DATA_CONTRACT.md
+# Area tolerance policy (docs/DATA_CONTRACT.md "Area tolerance"). Evidence: over ALL
+# 14,891 unique BOOMI plans, abs(total_area_m2 - sum(count*area_per_room_m2)):
+# mean=0.96m2 median=0.78 p95=2.45 p99=3.50 max=7.47 (m2); as a % of total_area_m2:
+# mean=0.81% median=0.69% p95=1.95% p99=2.53% max=3.97%. The relative error is small
+# and bounded across the entire dataset (never >4%) - the signature of source-side
+# floating point rounding, not data loss (which would show large/erratic/one-sided
+# errors). A plan passes if EITHER tolerance holds, so small-total-area plans (where
+# a tiny absolute rounding could look large in %) are still covered by the absolute
+# bound, and large plans (where a few m2 is negligible) are covered by the relative
+# bound - the observed max of both (7.47m2 / 3.97%) sits safely under these.
+AREA_TOLERANCE_ABS_M2 = 5.0
+AREA_TOLERANCE_REL_PCT = 0.05
+
+
+def area_within_tolerance(value_a: float, value_b: float) -> bool:
+    abs_diff = abs(value_a - value_b)
+    if abs_diff <= AREA_TOLERANCE_ABS_M2:
+        return True
+    denom = max(abs(value_a), abs(value_b))
+    return denom > 0 and abs_diff / denom <= AREA_TOLERANCE_REL_PCT
 
 
 def find_constraint_violations(example: ArchitectTrainingExample) -> list[str]:
@@ -33,6 +52,22 @@ def find_constraint_violations(example: ArchitectTrainingExample) -> list[str]:
             if (a, b, want_rel) not in rel_pairs and (b, a, want_rel) not in rel_pairs:
                 violations.append(f"{c.id}: {c.type.value} {c.target} has no matching relationship in target_spec")
     return violations
+
+
+def classify_constraint_violations(example: ArchitectTrainingExample) -> tuple[list[str], list[str]]:
+    """Splits find_constraint_violations() output into (hard_violations, soft_violations)
+    by looking up each violated constraint's declared priority - HARD violations are
+    correctness bugs (a stated requirement the target doesn't satisfy); SOFT ones
+    (e.g. an ADJACENCY/DIRECT_ACCESS constraint not matching) are reported separately
+    since a SOFT/OBSERVED_GEOMETRY fact not holding is a softer signal.
+    """
+    by_id = {c.id: c for c in example.constraints}
+    hard, soft = [], []
+    for v in find_constraint_violations(example):
+        constraint_id = v.split(":", 1)[0]
+        c = by_id.get(constraint_id)
+        (hard if c and c.priority == Priority.HARD else soft).append(v)
+    return hard, soft
 
 
 def find_contradictions(constraints: list[Constraint]) -> list[str]:
@@ -86,9 +121,10 @@ def find_invariant_violations(example: ArchitectTrainingExample) -> list[str]:
     brief = example.brief
 
     program_area_sum = sum(rp.count * rp.area_per_room_m2 for rp in spec.program)
-    if brief.target_area_m2 is not None and abs(program_area_sum - brief.target_area_m2) > AREA_CONSISTENCY_TOLERANCE_M2:
+    if brief.target_area_m2 is not None and not area_within_tolerance(program_area_sum, brief.target_area_m2):
         violations.append(
-            f"sum(program.count*area_per_room_m2)={program_area_sum:.1f} too far from brief.target_area_m2={brief.target_area_m2}"
+            f"sum(program.count*area_per_room_m2)={program_area_sum:.2f} outside tolerance of "
+            f"brief.target_area_m2={brief.target_area_m2} (>{AREA_TOLERANCE_ABS_M2}m2 and >{AREA_TOLERANCE_REL_PCT:.0%})"
         )
 
     spec_total = spec.metadata.get("total_area_m2")

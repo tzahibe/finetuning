@@ -1,21 +1,25 @@
 {
-  "dataset_version": "0.3.0",
+  "dataset_version": "0.4.0",
   "source_dataset": "BDivyesh/boomi-stage-a-text-spec",
   "source_split": "train",
   "source_level": "L3",
-  "git_commit": "c9f3bdc",
+  "git_commit": "facf4f1",
   "requested_samples": 100,
   "TOTAL_EXAMPLES": 100,
   "VALID_EXAMPLES": 100,
   "INVALID_EXAMPLES": 0,
-  "CONTRADICTIONS": 0,
   "HARD_CONSTRAINT_VIOLATIONS": 0,
+  "SOFT_CONSTRAINT_TARGET_MISMATCHES": 0,
   "UNKNOWN_TYPES": 0,
-  "AREA_INCONSISTENCIES": 1,
   "DUPLICATE_RELATIONSHIPS": 0,
+  "CONTRADICTIONS": 0,
   "SPLIT_LEAKAGE": 0,
   "TARGET_LEAKAGE_WARNINGS": 0,
-  "OUTLIER_WARNINGS": 1,
+  "AREA_ERROR_MEAN": 1.036,
+  "AREA_ERROR_P95": 2.306,
+  "AREA_ERROR_MAX": 4.634,
+  "AREA_TOLERANCE_POLICY": "abs<=5.0m2 OR rel<=5% (see docs/DATA_CONTRACT.md Area tolerance)",
+  "AREA_OUTSIDE_TOLERANCE": 0,
   "rejection_reasons": {},
   "constraint_coverage_ratio_by_difficulty": {
     "C0": {
@@ -38,10 +42,6 @@
       "max": 0.533,
       "n": 26
     }
-  },
-  "area_consistency_diff_m2": {
-    "mean": 1.036,
-    "max": 4.634
   },
   "rejected_detail": []
 }
