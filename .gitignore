@@ -11,5 +11,6 @@ data/training/*
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 !data/training/.gitkeep
+!data/training/README.md
 models/
 .DS_Store
