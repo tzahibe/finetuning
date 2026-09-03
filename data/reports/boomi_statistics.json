@@ -162,16 +162,163 @@
     "950-975": 16,
     "975-1000": 16
   },
-  "bhk_distribution": {
-    "1BHK": 7128,
-    "2BHK": 31844,
-    "3BHK": 24264,
-    "4BHK": 3260,
-    "5BHK": 1008,
-    "6BHK": 44,
-    "STUDIO": 12,
-    "7BHK": 4
-  },
+  "bedrooms_bathrooms_distribution": [
+    {
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "count": 30376
+    },
+    {
+      "bedrooms": 3,
+      "bathrooms": 3,
+      "count": 13400
+    },
+    {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "count": 9748
+    },
+    {
+      "bedrooms": 1,
+      "bathrooms": 2,
+      "count": 6760
+    },
+    {
+      "bedrooms": 4,
+      "bathrooms": 4,
+      "count": 2004
+    },
+    {
+      "bedrooms": 2,
+      "bathrooms": 3,
+      "count": 1128
+    },
+    {
+      "bedrooms": 3,
+      "bathrooms": 4,
+      "count": 976
+    },
+    {
+      "bedrooms": 4,
+      "bathrooms": 3,
+      "count": 708
+    },
+    {
+      "bedrooms": 5,
+      "bathrooms": 5,
+      "count": 496
+    },
+    {
+      "bedrooms": 4,
+      "bathrooms": 5,
+      "count": 388
+    },
+    {
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "count": 296
+    },
+    {
+      "bedrooms": 5,
+      "bathrooms": 4,
+      "count": 276
+    },
+    {
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "count": 248
+    },
+    {
+      "bedrooms": 5,
+      "bathrooms": 6,
+      "count": 180
+    },
+    {
+      "bedrooms": 4,
+      "bathrooms": 2,
+      "count": 116
+    },
+    {
+      "bedrooms": 1,
+      "bathrooms": 3,
+      "count": 112
+    },
+    {
+      "bedrooms": 3,
+      "bathrooms": 5,
+      "count": 80
+    },
+    {
+      "bedrooms": 3,
+      "bathrooms": 1,
+      "count": 56
+    },
+    {
+      "bedrooms": 2,
+      "bathrooms": 4,
+      "count": 44
+    },
+    {
+      "bedrooms": 4,
+      "bathrooms": 6,
+      "count": 40
+    },
+    {
+      "bedrooms": 5,
+      "bathrooms": 7,
+      "count": 28
+    },
+    {
+      "bedrooms": 5,
+      "bathrooms": 3,
+      "count": 28
+    },
+    {
+      "bedrooms": 6,
+      "bathrooms": 5,
+      "count": 24
+    },
+    {
+      "bedrooms": 6,
+      "bathrooms": 6,
+      "count": 16
+    },
+    {
+      "bedrooms": 0,
+      "bathrooms": 1,
+      "count": 8
+    },
+    {
+      "bedrooms": 1,
+      "bathrooms": 4,
+      "count": 8
+    },
+    {
+      "bedrooms": 4,
+      "bathrooms": 7,
+      "count": 4
+    },
+    {
+      "bedrooms": 3,
+      "bathrooms": 6,
+      "count": 4
+    },
+    {
+      "bedrooms": 0,
+      "bathrooms": 2,
+      "count": 4
+    },
+    {
+      "bedrooms": 7,
+      "bathrooms": 4,
+      "count": 4
+    },
+    {
+      "bedrooms": 6,
+      "bathrooms": 3,
+      "count": 4
+    }
+  ],
   "relationship_types": {
     "door": 275240,
     "adjacent": 321384,
