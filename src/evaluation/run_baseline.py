@@ -38,18 +38,17 @@ def load_fixed_sample(n: int, path: str = TEST_PATH, seed: int = SAMPLE_SEED) ->
 def load_model():
     device = "mps" if torch.backends.mps.is_available() else "cpu"
     tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)
-    model = AutoModelForCausalLM.from_pretrained(MODEL_ID, torch_dtype=torch.bfloat16).to(device)
+    model = AutoModelForCausalLM.from_pretrained(MODEL_ID, dtype=torch.bfloat16).to(device)
     model.eval()
     return tokenizer, model, device
 
 
 def generate(tokenizer, model, device, messages: list[dict]) -> str:
-    prompt_ids = tokenizer.apply_chat_template(
-        messages, tokenize=True, add_generation_prompt=True, return_tensors="pt"
-    ).to(device)
+    prompt_text = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+    inputs = tokenizer(prompt_text, return_tensors="pt").to(device)
     with torch.no_grad():
         output_ids = model.generate(
-            prompt_ids,
+            **inputs,
             max_new_tokens=MAX_NEW_TOKENS,
             do_sample=False,  # deterministic, greedy decoding
             temperature=None,
@@ -57,7 +56,7 @@ def generate(tokenizer, model, device, messages: list[dict]) -> str:
             top_k=None,
             pad_token_id=tokenizer.eos_token_id,
         )
-    new_tokens = output_ids[0][prompt_ids.shape[1] :]
+    new_tokens = output_ids[0][inputs["input_ids"].shape[1] :]
     return tokenizer.decode(new_tokens, skip_special_tokens=True)
 
 
@@ -113,12 +112,12 @@ def run_baseline(n: int, output_dir: str = "data/evaluation") -> dict:
             raw_output = generate(tokenizer, model, device, messages)
             elapsed = round(time.time() - t0, 1)
 
-            rf.write(json.dumps({"index": example["index"], "example_id": example["example_id"], "raw_output": raw_output, "seconds": elapsed}) + "\n")
+            rf.write(json.dumps({"index": example["index"], "raw_output": raw_output, "seconds": elapsed}) + "\n")
 
             result = evaluate_example(raw_output, example)
             ef.write(json.dumps(result) + "\n")
             all_results.append(result)
-            print(f"  [{example['index']}] {example['example_id']} json_valid={result['json_valid']} schema_valid={result['schema_valid']} ({elapsed}s)")
+            print(f"  [{example['index']}] json_valid={result['json_valid']} schema_valid={result['schema_valid']} ({elapsed}s)")
 
     return _summarize(all_results, n)
 
