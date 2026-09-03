@@ -58,15 +58,39 @@ class Priority(str, Enum):
     SOFT = "SOFT"
 
 
+class SourceType(str, Enum):
+    """Why a constraint or relationship exists. See .claude/skills/tasks/SKILL.md audit, Task 16/67."""
+
+    USER_REQUIREMENT = "USER_REQUIREMENT"
+    REGULATION = "REGULATION"
+    SITE_CONDITION = "SITE_CONDITION"
+    ARCHITECTURAL_PREFERENCE = "ARCHITECTURAL_PREFERENCE"
+    OBSERVED_GEOMETRY = "OBSERVED_GEOMETRY"
+    DATASET_AUGMENTATION = "DATASET_AUGMENTATION"
+
+
+class Site(BaseModel):
+    """A simple rectangular-bounding-box site representation (V1 scope).
+
+    width_m/length_m are bounding dimensions, not necessarily implying
+    area_m2 = width_m * length_m - verified against BOOMI that the plot is
+    frequently non-rectangular (width*depth overstates area_m2 in ~98% of
+    sampled plans). area_m2 always comes directly from the source, never
+    recomputed from width*length.
+    """
+
+    width_m: float = Field(gt=0)
+    length_m: float = Field(gt=0)
+    area_m2: float = Field(gt=0)
+
+
 class Brief(BaseModel):
     building_type: Optional[str] = None
-    built_area_m2: Optional[float] = Field(default=None, gt=0)
+    target_area_m2: Optional[float] = Field(default=None, gt=0)
     floors: Optional[int] = Field(default=None, gt=0)
     bedrooms: Optional[int] = Field(default=None, ge=0)
     bathrooms: Optional[int] = Field(default=None, ge=0)
     balconies: Optional[int] = Field(default=None, ge=0)
-    plot_width_m: Optional[float] = Field(default=None, gt=0)
-    plot_length_m: Optional[float] = Field(default=None, gt=0)
     preferences: list[str] = Field(default_factory=list)
 
 
@@ -77,25 +101,26 @@ class Constraint(BaseModel):
     value: Optional[Union[float, str]] = None
     unit: Optional[str] = None
     priority: Priority
+    source_type: SourceType
     source: str
 
 
 class RoomProgram(BaseModel):
     type: RoomType
     count: int = Field(gt=0)
-    target_area_m2: float = Field(gt=0)
+    # Area of ONE room of this type in the source plan (verified: count * area_per_room_m2
+    # sums to total_area_m2 almost exactly across the dataset) - not a total, not an average.
+    area_per_room_m2: float = Field(gt=0)
+    zone: ZoneType
 
 
 class Relationship(BaseModel):
     a_type: RoomType
     b_type: RoomType
     relationship: RelationshipType
-
-
-class Room(BaseModel):
-    type: RoomType
-    zone: ZoneType
-    target_area_m2: float = Field(gt=0)
+    # All BOOMI-derived relationships are observed facts about one solved plan,
+    # not universal architectural rules - see SKILL.md audit Task 15/34.
+    source_type: SourceType = SourceType.OBSERVED_GEOMETRY
 
 
 class Zone(BaseModel):
@@ -106,7 +131,6 @@ class Zone(BaseModel):
 class ArchitecturalSpec(BaseModel):
     program: list[RoomProgram]
     zones: list[Zone]
-    rooms: list[Room]
     relationships: list[Relationship]
     circulation: list[RoomType] = Field(default_factory=list)
     metadata: dict = Field(default_factory=dict)
@@ -115,6 +139,7 @@ class ArchitecturalSpec(BaseModel):
 class ArchitectTrainingExample(BaseModel):
     example_id: str
     brief: Brief
+    site: Site
     constraints: list[Constraint] = Field(default_factory=list)
     target_spec: ArchitecturalSpec
     metadata: dict = Field(default_factory=dict)

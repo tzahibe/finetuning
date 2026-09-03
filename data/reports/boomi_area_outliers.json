@@ -1,0 +1,2608 @@
+{
+  "method": "Tukey IQR fences (1.5x IQR) computed per normalized room type, deduplicated across L0-L3 (Task 6/8)",
+  "total_unique_outlier_plans": 3754,
+  "total_outlier_records": 3754,
+  "note": "Flagged for review only - NOT automatically removed (Task 7).",
+  "outliers": [
+    {
+      "plan_id": 7395,
+      "room_type": "LIVING",
+      "area_m2": 465.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 14702,
+      "room_type": "PARKING",
+      "area_m2": 437.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 27.0,
+      "room_type_p75": 77.5
+    },
+    {
+      "plan_id": 15457,
+      "room_type": "LIVING",
+      "area_m2": 375.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 14701,
+      "room_type": "PARKING",
+      "area_m2": 367.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 27.0,
+      "room_type_p75": 77.5
+    },
+    {
+      "plan_id": 13354,
+      "room_type": "LIVING",
+      "area_m2": 365.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 14171,
+      "room_type": "LIVING",
+      "area_m2": 357.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 11365,
+      "room_type": "LIVING",
+      "area_m2": 332.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 16171,
+      "room_type": "LIVING",
+      "area_m2": 307.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 9295,
+      "room_type": "PARKING",
+      "area_m2": 295.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 27.0,
+      "room_type_p75": 77.5
+    },
+    {
+      "plan_id": 15370,
+      "room_type": "LIVING",
+      "area_m2": 292.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 2223,
+      "room_type": "LIVING",
+      "area_m2": 287.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 15373,
+      "room_type": "LIVING",
+      "area_m2": 280.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 13884,
+      "room_type": "LIVING",
+      "area_m2": 277.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 2914,
+      "room_type": "LIVING",
+      "area_m2": 267.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 651640,
+      "room_type": "LIVING",
+      "area_m2": 267.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 886,
+      "room_type": "LIVING",
+      "area_m2": 265.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 6938,
+      "room_type": "LIVING",
+      "area_m2": 265.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 15059,
+      "room_type": "LIVING",
+      "area_m2": 262.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 767,
+      "room_type": "LIVING",
+      "area_m2": 260.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 2499,
+      "room_type": "LIVING",
+      "area_m2": 260.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 15369,
+      "room_type": "LIVING",
+      "area_m2": 252.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 12592,
+      "room_type": "LIVING",
+      "area_m2": 235.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 973,
+      "room_type": "LIVING",
+      "area_m2": 235.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 13370,
+      "room_type": "LIVING",
+      "area_m2": 232.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 767,
+      "room_type": "BALCONY",
+      "area_m2": 227.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 4.0,
+      "room_type_p75": 8.0
+    },
+    {
+      "plan_id": 12154,
+      "room_type": "LIVING",
+      "area_m2": 227.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 8798,
+      "room_type": "LIVING",
+      "area_m2": 225.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 1887,
+      "room_type": "LIVING",
+      "area_m2": 225.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 2881,
+      "room_type": "LIVING",
+      "area_m2": 222.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 13080,
+      "room_type": "LIVING",
+      "area_m2": 220.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 15998,
+      "room_type": "LIVING",
+      "area_m2": 220.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 717,
+      "room_type": "LIVING",
+      "area_m2": 217.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 7909,
+      "room_type": "LIVING",
+      "area_m2": 215.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 7398,
+      "room_type": "LIVING",
+      "area_m2": 215.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 15181,
+      "room_type": "LIVING",
+      "area_m2": 212.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 7394,
+      "room_type": "LIVING",
+      "area_m2": 212.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 16173,
+      "room_type": "LIVING",
+      "area_m2": 212.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 13204,
+      "room_type": "LIVING",
+      "area_m2": 210.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 16172,
+      "room_type": "LIVING",
+      "area_m2": 210.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 633469,
+      "room_type": "LIVING",
+      "area_m2": 210.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 12069,
+      "room_type": "LIVING",
+      "area_m2": 210.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 14171,
+      "room_type": "PARKING",
+      "area_m2": 210.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 27.0,
+      "room_type_p75": 77.5
+    },
+    {
+      "plan_id": 971,
+      "room_type": "LIVING",
+      "area_m2": 207.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 16793,
+      "room_type": "LIVING",
+      "area_m2": 207.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 2643,
+      "room_type": "LIVING",
+      "area_m2": 205.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 12153,
+      "room_type": "LIVING",
+      "area_m2": 205.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 2880,
+      "room_type": "LIVING",
+      "area_m2": 205.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 11364,
+      "room_type": "LIVING",
+      "area_m2": 202.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 9848,
+      "room_type": "LIVING",
+      "area_m2": 202.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 11676,
+      "room_type": "PARKING",
+      "area_m2": 202.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 27.0,
+      "room_type_p75": 77.5
+    },
+    {
+      "plan_id": 9228,
+      "room_type": "LIVING",
+      "area_m2": 200.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 2220,
+      "room_type": "LIVING",
+      "area_m2": 200.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 15361,
+      "room_type": "LIVING",
+      "area_m2": 200.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 7397,
+      "room_type": "LIVING",
+      "area_m2": 197.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 9207,
+      "room_type": "LIVING",
+      "area_m2": 197.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 3827,
+      "room_type": "LIVING",
+      "area_m2": 197.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 13439,
+      "room_type": "LIVING",
+      "area_m2": 197.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 12152,
+      "room_type": "LIVING",
+      "area_m2": 197.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 9226,
+      "room_type": "LIVING",
+      "area_m2": 197.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 6346,
+      "room_type": "LIVING",
+      "area_m2": 195.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 3829,
+      "room_type": "LIVING",
+      "area_m2": 195.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 7908,
+      "room_type": "LIVING",
+      "area_m2": 192.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 12608,
+      "room_type": "LIVING",
+      "area_m2": 192.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 14241,
+      "room_type": "LIVING",
+      "area_m2": 192.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 12154,
+      "room_type": "PARKING",
+      "area_m2": 192.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 27.0,
+      "room_type_p75": 77.5
+    },
+    {
+      "plan_id": 4078,
+      "room_type": "BALCONY",
+      "area_m2": 190.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 4.0,
+      "room_type_p75": 8.0
+    },
+    {
+      "plan_id": 9994,
+      "room_type": "LIVING",
+      "area_m2": 190.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 9229,
+      "room_type": "LIVING",
+      "area_m2": 190.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 9274,
+      "room_type": "LIVING",
+      "area_m2": 187.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 969032,
+      "room_type": "LIVING",
+      "area_m2": 187.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 1306,
+      "room_type": "LIVING",
+      "area_m2": 187.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 7907,
+      "room_type": "LIVING",
+      "area_m2": 187.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 15474,
+      "room_type": "LIVING",
+      "area_m2": 185.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 8820,
+      "room_type": "LIVING",
+      "area_m2": 185.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 3828,
+      "room_type": "LIVING",
+      "area_m2": 185.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 9227,
+      "room_type": "LIVING",
+      "area_m2": 182.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 3695,
+      "room_type": "LIVING",
+      "area_m2": 182.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 2219,
+      "room_type": "LIVING",
+      "area_m2": 180.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 5341,
+      "room_type": "LIVING",
+      "area_m2": 180.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 7995,
+      "room_type": "LIVING",
+      "area_m2": 177.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 2336,
+      "room_type": "LIVING",
+      "area_m2": 177.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 10944,
+      "room_type": "LIVING",
+      "area_m2": 177.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 1216,
+      "room_type": "LIVING",
+      "area_m2": 175.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 9791,
+      "room_type": "LIVING",
+      "area_m2": 175.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 152,
+      "room_type": "LIVING",
+      "area_m2": 175.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 496,
+      "room_type": "LIVING",
+      "area_m2": 172.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 8765,
+      "room_type": "LIVING",
+      "area_m2": 172.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 9225,
+      "room_type": "LIVING",
+      "area_m2": 172.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 11365,
+      "room_type": "PARKING",
+      "area_m2": 172.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 27.0,
+      "room_type_p75": 77.5
+    },
+    {
+      "plan_id": 498,
+      "room_type": "LIVING",
+      "area_m2": 170.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 8153,
+      "room_type": "LIVING",
+      "area_m2": 170.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 11038,
+      "room_type": "LIVING",
+      "area_m2": 170.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 9651,
+      "room_type": "LIVING",
+      "area_m2": 170.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 12221,
+      "room_type": "LIVING",
+      "area_m2": 170.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 3725,
+      "room_type": "LIVING",
+      "area_m2": 167.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 1398,
+      "room_type": "LIVING",
+      "area_m2": 167.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 7906,
+      "room_type": "LIVING",
+      "area_m2": 167.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 8724,
+      "room_type": "LIVING",
+      "area_m2": 167.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 151,
+      "room_type": "LIVING",
+      "area_m2": 167.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 12769,
+      "room_type": "BALCONY",
+      "area_m2": 165.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 4.0,
+      "room_type_p75": 8.0
+    },
+    {
+      "plan_id": 311883,
+      "room_type": "BALCONY",
+      "area_m2": 165.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 4.0,
+      "room_type_p75": 8.0
+    },
+    {
+      "plan_id": 2820,
+      "room_type": "LIVING",
+      "area_m2": 165.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 12152,
+      "room_type": "PARKING",
+      "area_m2": 165.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 27.0,
+      "room_type_p75": 77.5
+    },
+    {
+      "plan_id": 3062,
+      "room_type": "LIVING",
+      "area_m2": 162.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 8457,
+      "room_type": "LIVING",
+      "area_m2": 162.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 1178,
+      "room_type": "LIVING",
+      "area_m2": 162.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 1177,
+      "room_type": "LIVING",
+      "area_m2": 160.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 16244,
+      "room_type": "LIVING",
+      "area_m2": 160.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 2222,
+      "room_type": "LIVING",
+      "area_m2": 160.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 3706,
+      "room_type": "LIVING",
+      "area_m2": 160.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 9974,
+      "room_type": "LIVING",
+      "area_m2": 160.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 13803,
+      "room_type": "LIVING",
+      "area_m2": 160.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 651640,
+      "room_type": "PARKING",
+      "area_m2": 160.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 27.0,
+      "room_type_p75": 77.5
+    },
+    {
+      "plan_id": 886,
+      "room_type": "PARKING",
+      "area_m2": 160.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 27.0,
+      "room_type_p75": 77.5
+    },
+    {
+      "plan_id": 12852,
+      "room_type": "LIVING",
+      "area_m2": 157.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 9652,
+      "room_type": "LIVING",
+      "area_m2": 157.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 9847,
+      "room_type": "LIVING",
+      "area_m2": 157.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 4066,
+      "room_type": "LIVING",
+      "area_m2": 155.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 591,
+      "room_type": "LIVING",
+      "area_m2": 155.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 5842,
+      "room_type": "LIVING",
+      "area_m2": 155.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 9228,
+      "room_type": "PARKING",
+      "area_m2": 155.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 27.0,
+      "room_type_p75": 77.5
+    },
+    {
+      "plan_id": 2366,
+      "room_type": "LIVING",
+      "area_m2": 152.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 16195,
+      "room_type": "LIVING",
+      "area_m2": 152.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 14375,
+      "room_type": "LIVING",
+      "area_m2": 152.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 11670,
+      "room_type": "LIVING",
+      "area_m2": 152.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 33,
+      "room_type": "LIVING",
+      "area_m2": 152.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 4128,
+      "room_type": "LIVING",
+      "area_m2": 152.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 16188,
+      "room_type": "LIVING",
+      "area_m2": 152.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 14361,
+      "room_type": "LIVING",
+      "area_m2": 150.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 14782,
+      "room_type": "LIVING",
+      "area_m2": 150.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 9846,
+      "room_type": "LIVING",
+      "area_m2": 150.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 7202,
+      "room_type": "LIVING",
+      "area_m2": 150.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 13805,
+      "room_type": "LIVING",
+      "area_m2": 150.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 9911,
+      "room_type": "LIVING",
+      "area_m2": 150.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 4386,
+      "room_type": "LIVING",
+      "area_m2": 150.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 13802,
+      "room_type": "LIVING",
+      "area_m2": 147.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 7371,
+      "room_type": "LIVING",
+      "area_m2": 147.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 16096,
+      "room_type": "LIVING",
+      "area_m2": 147.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 16884,
+      "room_type": "LIVING",
+      "area_m2": 147.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 13445,
+      "room_type": "LIVING",
+      "area_m2": 147.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 15990,
+      "room_type": "LIVING",
+      "area_m2": 147.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 16118,
+      "room_type": "LIVING",
+      "area_m2": 145.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 14919,
+      "room_type": "LIVING",
+      "area_m2": 145.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 5937,
+      "room_type": "LIVING",
+      "area_m2": 145.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 9013,
+      "room_type": "LIVING",
+      "area_m2": 145.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 4114,
+      "room_type": "LIVING",
+      "area_m2": 145.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 15669,
+      "room_type": "LIVING",
+      "area_m2": 145.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 8473,
+      "room_type": "LIVING",
+      "area_m2": 142.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 15682,
+      "room_type": "LIVING",
+      "area_m2": 142.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 4118,
+      "room_type": "LIVING",
+      "area_m2": 142.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 8152,
+      "room_type": "LIVING",
+      "area_m2": 140.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 3659,
+      "room_type": "LIVING",
+      "area_m2": 140.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 5762,
+      "room_type": "LIVING",
+      "area_m2": 140.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 4117,
+      "room_type": "LIVING",
+      "area_m2": 140.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 10245,
+      "room_type": "LIVING",
+      "area_m2": 140.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 3592,
+      "room_type": "LIVING",
+      "area_m2": 140.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 16097,
+      "room_type": "LIVING",
+      "area_m2": 140.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 1531,
+      "room_type": "BALCONY",
+      "area_m2": 137.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 4.0,
+      "room_type_p75": 8.0
+    },
+    {
+      "plan_id": 17064,
+      "room_type": "LIVING",
+      "area_m2": 137.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 16194,
+      "room_type": "LIVING",
+      "area_m2": 137.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 146,
+      "room_type": "LIVING",
+      "area_m2": 137.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 13205,
+      "room_type": "LIVING",
+      "area_m2": 137.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 11918,
+      "room_type": "LIVING",
+      "area_m2": 137.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 3591,
+      "room_type": "LIVING",
+      "area_m2": 137.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 580728,
+      "room_type": "LIVING",
+      "area_m2": 137.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 4363,
+      "room_type": "LIVING",
+      "area_m2": 137.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 15330,
+      "room_type": "LIVING",
+      "area_m2": 137.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 16172,
+      "room_type": "BED ROOM",
+      "area_m2": 135.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 16.0,
+      "room_type_p75": 21.0
+    },
+    {
+      "plan_id": 900441,
+      "room_type": "BED ROOM",
+      "area_m2": 135.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 16.0,
+      "room_type_p75": 21.0
+    },
+    {
+      "plan_id": 16173,
+      "room_type": "BED ROOM",
+      "area_m2": 135.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 16.0,
+      "room_type_p75": 21.0
+    },
+    {
+      "plan_id": 497,
+      "room_type": "LIVING",
+      "area_m2": 135.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 5843,
+      "room_type": "LIVING",
+      "area_m2": 135.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 11363,
+      "room_type": "LIVING",
+      "area_m2": 135.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 13187,
+      "room_type": "LIVING",
+      "area_m2": 135.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 3724,
+      "room_type": "LIVING",
+      "area_m2": 135.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 7370,
+      "room_type": "LIVING",
+      "area_m2": 135.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 4335,
+      "room_type": "LIVING",
+      "area_m2": 135.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 12439,
+      "room_type": "LIVING",
+      "area_m2": 135.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 147,
+      "room_type": "LIVING",
+      "area_m2": 135.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 16098,
+      "room_type": "LIVING",
+      "area_m2": 132.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 14181,
+      "room_type": "LIVING",
+      "area_m2": 132.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 14384,
+      "room_type": "LIVING",
+      "area_m2": 132.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 693643,
+      "room_type": "LIVING",
+      "area_m2": 132.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 4843,
+      "room_type": "LIVING",
+      "area_m2": 132.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 16434,
+      "room_type": "LIVING",
+      "area_m2": 132.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 4078,
+      "room_type": "LIVING",
+      "area_m2": 132.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 8794,
+      "room_type": "LIVING",
+      "area_m2": 132.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 4487,
+      "room_type": "BALCONY",
+      "area_m2": 130.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 4.0,
+      "room_type_p75": 8.0
+    },
+    {
+      "plan_id": 13835,
+      "room_type": "LIVING",
+      "area_m2": 130.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 12769,
+      "room_type": "LIVING",
+      "area_m2": 130.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 1219,
+      "room_type": "LIVING",
+      "area_m2": 130.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 4060,
+      "room_type": "LIVING",
+      "area_m2": 130.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 311883,
+      "room_type": "LIVING",
+      "area_m2": 130.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 13804,
+      "room_type": "LIVING",
+      "area_m2": 130.0,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 15457,
+      "room_type": "BALCONY",
+      "area_m2": 127.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 4.0,
+      "room_type_p75": 8.0
+    },
+    {
+      "plan_id": 9966,
+      "room_type": "LIVING",
+      "area_m2": 127.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 7104,
+      "room_type": "LIVING",
+      "area_m2": 127.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 15311,
+      "room_type": "LIVING",
+      "area_m2": 127.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 1568,
+      "room_type": "LIVING",
+      "area_m2": 127.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    },
+    {
+      "plan_id": 6898,
+      "room_type": "LIVING",
+      "area_m2": 127.5,
+      "appears_in_levels": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "room_type_p25": 30.0,
+      "room_type_p75": 50.0
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "dataset_version": "0.2.0",
+  "source_dataset": "BDivyesh/boomi-stage-a-text-spec",
+  "source_split": "train",
+  "source_level": "L3",
+  "git_commit": "a35f71f",
+  "requested_samples": 100,
+  "accepted_examples": 100,
+  "rejected_examples": 0,
+  "rejection_reasons": {},
+  "anti_leakage_ratio": {
+    "mean": 0.173,
+    "max": 0.471,
+    "n_above_0.8": 0
+  },
+  "area_consistency_diff_m2": {
+    "mean": 1.036,
+    "max": 4.634
+  },
+  "rejected_detail": []
+}

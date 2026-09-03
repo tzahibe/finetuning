@@ -1,0 +1,66 @@
+{
+  "BALCONY": {
+    "count": 11466,
+    "mean_ratio": 0.053,
+    "median_ratio": 0.0458,
+    "p95_ratio": 0.1058,
+    "p99_ratio": 0.1681,
+    "max_ratio": 0.5334
+  },
+  "BATH": {
+    "count": 14891,
+    "mean_ratio": 0.043,
+    "median_ratio": 0.0421,
+    "p95_ratio": 0.0615,
+    "p99_ratio": 0.0776,
+    "max_ratio": 0.2462
+  },
+  "BED ROOM": {
+    "count": 14889,
+    "mean_ratio": 0.1693,
+    "median_ratio": 0.1656,
+    "p95_ratio": 0.2581,
+    "p99_ratio": 0.3027,
+    "max_ratio": 0.5139
+  },
+  "KITCHEN": {
+    "count": 14781,
+    "mean_ratio": 0.0942,
+    "median_ratio": 0.0887,
+    "p95_ratio": 0.1521,
+    "p99_ratio": 0.1905,
+    "max_ratio": 0.3765
+  },
+  "LIVING": {
+    "count": 14890,
+    "mean_ratio": 0.3577,
+    "median_ratio": 0.3567,
+    "p95_ratio": 0.4599,
+    "p99_ratio": 0.5106,
+    "max_ratio": 0.789
+  },
+  "STORE": {
+    "count": 1551,
+    "mean_ratio": 0.0304,
+    "median_ratio": 0.0206,
+    "p95_ratio": 0.0859,
+    "p99_ratio": 0.1011,
+    "max_ratio": 0.1295
+  },
+  "PARKING": {
+    "count": 288,
+    "mean_ratio": 0.1948,
+    "median_ratio": 0.1936,
+    "p95_ratio": 0.2935,
+    "p99_ratio": 0.4823,
+    "max_ratio": 0.5983
+  },
+  "STAIR": {
+    "count": 592,
+    "mean_ratio": 0.0458,
+    "median_ratio": 0.0325,
+    "p95_ratio": 0.1254,
+    "p99_ratio": 0.2239,
+    "max_ratio": 0.3787
+  }
+}

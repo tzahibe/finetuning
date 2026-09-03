@@ -1,7 +1,7 @@
 import random
 from enum import Enum
 
-from src.datasets.schema import Constraint, ConstraintType, Priority, RelationshipType
+from src.datasets.schema import Constraint, ConstraintType, Priority, RelationshipType, SourceType
 from src.preprocessing.boomi_parser import ParsedBoomiRecord
 
 
@@ -21,7 +21,23 @@ _SAMPLE_SIZES = {
 
 
 def build_constraint_pool(record: ParsedBoomiRecord) -> list[Constraint]:
-    """Builds every constraint that the source BOOMI plan actually satisfies."""
+    """Builds every constraint candidate the source BOOMI plan actually satisfies.
+
+    Priority/source_type follow SKILL.md audit Task 15-17: room counts mirror facts
+    the Brief itself states (USER_REQUIREMENT, HARD). Relationships and total area are
+    a single observed solution, not a universal rule the model must reproduce exactly
+    - kept SOFT / OBSERVED_GEOMETRY (or USER_REQUIREMENT for total area, treated as an
+    approximate target by consumers, not exact equality - see Task 27).
+
+    Site facts (width/length/area) are NOT generated here - Site is always provided as
+    a first-class top-level field on the training example (Task 25), so a SITE_BOUNDARY
+    constraint here would just duplicate it.
+
+    `window` adjacency edges are not mapped to a constraint: their exact architectural
+    meaning could not be determined from the source data alone (Task 20), so they are
+    only preserved as raw observed relationships in the target spec, not promoted into
+    an input-facing constraint.
+    """
     source = f"boomi:{record.plan_id}"
     pool: list[Constraint] = []
 
@@ -32,6 +48,7 @@ def build_constraint_pool(record: ParsedBoomiRecord) -> list[Constraint]:
                 type=ConstraintType.REQUIRED_ROOM,
                 target=rp.type.value,
                 priority=Priority.HARD,
+                source_type=SourceType.USER_REQUIREMENT,
                 source=source,
             )
         )
@@ -42,6 +59,7 @@ def build_constraint_pool(record: ParsedBoomiRecord) -> list[Constraint]:
                 target=rp.type.value,
                 value=rp.count,
                 priority=Priority.HARD,
+                source_type=SourceType.USER_REQUIREMENT,
                 source=source,
             )
         )
@@ -52,29 +70,9 @@ def build_constraint_pool(record: ParsedBoomiRecord) -> list[Constraint]:
             type=ConstraintType.TOTAL_AREA,
             value=record.total_area_m2,
             unit="m2",
-            priority=Priority.HARD,
-            source=source,
-        )
-    )
-    pool.append(
-        Constraint(
-            id="site_boundary:width",
-            type=ConstraintType.SITE_BOUNDARY,
-            target="width",
-            value=record.plot_width_m,
-            unit="m",
-            priority=Priority.HARD,
-            source=source,
-        )
-    )
-    pool.append(
-        Constraint(
-            id="site_boundary:length",
-            type=ConstraintType.SITE_BOUNDARY,
-            target="length",
-            value=record.plot_length_m,
-            unit="m",
-            priority=Priority.HARD,
+            # Approximate target, not exact floating-point equality - see Task 27.
+            priority=Priority.SOFT,
+            source_type=SourceType.USER_REQUIREMENT,
             source=source,
         )
     )
@@ -86,7 +84,8 @@ def build_constraint_pool(record: ParsedBoomiRecord) -> list[Constraint]:
                     id=f"adjacency:{i}",
                     type=ConstraintType.ADJACENCY,
                     target=f"{rel.a_type.value}<->{rel.b_type.value}",
-                    priority=Priority.HARD,
+                    priority=Priority.SOFT,
+                    source_type=SourceType.OBSERVED_GEOMETRY,
                     source=source,
                 )
             )
@@ -96,7 +95,8 @@ def build_constraint_pool(record: ParsedBoomiRecord) -> list[Constraint]:
                     id=f"direct_access:{i}",
                     type=ConstraintType.DIRECT_ACCESS,
                     target=f"{rel.a_type.value}<->{rel.b_type.value}",
-                    priority=Priority.HARD,
+                    priority=Priority.SOFT,
+                    source_type=SourceType.OBSERVED_GEOMETRY,
                     source=source,
                 )
             )

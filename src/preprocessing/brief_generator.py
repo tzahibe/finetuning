@@ -12,10 +12,11 @@ def generate_brief(record: ParsedBoomiRecord) -> Brief:
     return Brief(
         # Every BOOMI record is a dwelling unit (has a bhk_label) - safe to infer, not invented.
         building_type="residential",
-        built_area_m2=record.total_area_m2,
+        # This is the built/program area (sum of room areas), NOT the site area - see
+        # ParsedBoomiRecord.total_area_m2 for the verification behind this distinction.
+        target_area_m2=record.total_area_m2,
         bedrooms=bedrooms,
         bathrooms=bathrooms,
         balconies=balconies,
-        plot_width_m=record.plot_width_m,
-        plot_length_m=record.plot_length_m,
+        # floors: not present anywhere in BOOMI - left unset rather than assuming 1.
     )
