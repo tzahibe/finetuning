@@ -1,0 +1,129 @@
+{
+  "TOTAL_EXAMPLES": 67560,
+  "VALID_JSON": 67560,
+  "INVALID_JSON": 0,
+  "UNIQUE_EXAMPLE_IDS": 46138,
+  "UNIQUE_SOURCE_PLAN_IDS": 16890,
+  "DIFFICULTY_DISTRIBUTION": {
+    "C0": 16945,
+    "C2": 16816,
+    "C3": 16973,
+    "C1": 16826
+  },
+  "HARD_CONSTRAINT_VIOLATIONS": 0,
+  "HARD_OBSERVED_GEOMETRY": 0,
+  "REQUIRED_ROOM_TARGET_MISMATCHES": 0,
+  "ROOM_COUNT_TARGET_MISMATCHES": 0,
+  "RELATIONSHIP_CONSTRAINT_TARGET_MISMATCHES": 0,
+  "BRIEF_PROGRAM_COUNT_MISMATCHES": 0,
+  "DUPLICATE_RELATIONSHIPS": 0,
+  "DUPLICATE_CONSTRAINT_IDS": 0,
+  "UNKNOWN_ROOM_TYPES": 0,
+  "UNKNOWN_RELATIONSHIP_TYPES": 0,
+  "AREA_CONSISTENCY": {
+    "mean": 0.9619,
+    "median": 0.779,
+    "p95": 2.456,
+    "p99": 3.498,
+    "max": 7.631
+  },
+  "TARGET_LEAKAGE_BY_DIFFICULTY": {
+    "C0": {
+      "mean": 0.2196,
+      "p95": 0.25,
+      "max": 0.3333
+    },
+    "C1": {
+      "mean": 0.2537,
+      "p95": 0.3125,
+      "max": 0.4348
+    },
+    "C2": {
+      "mean": 0.308,
+      "p95": 0.3871,
+      "max": 0.5
+    },
+    "C3": {
+      "mean": 0.3825,
+      "p95": 0.4783,
+      "max": 0.619
+    }
+  },
+  "V1_SCOPE_VISIBILITY": {
+    "STAIRCASE_EXAMPLES": 2716,
+    "PARKING_EXAMPLES": 1336,
+    "STORAGE_EXAMPLES": 7080,
+    "BUILT_TO_SITE_RATIO_GT_1": 108
+  },
+  "DIVERSITY": {
+    "room_types": {
+      "BATHROOM": 67560,
+      "LIVING": 67556,
+      "BEDROOM": 67548,
+      "KITCHEN": 67064,
+      "BALCONY": 51940,
+      "STORAGE": 7080,
+      "STAIRCASE": 2716,
+      "PARKING": 1336
+    },
+    "relationship_types": {
+      "ADJACENT": 321372,
+      "DOOR_CONNECTION": 275228,
+      "WINDOW_CONNECTION": 25340
+    },
+    "constraint_types": {
+      "DIRECT_ACCESS": 44068,
+      "REQUIRED_ROOM": 43962,
+      "ADJACENCY": 43901,
+      "ROOM_COUNT": 43866,
+      "TOTAL_AREA": 35550
+    },
+    "bedrooms": {
+      "0": 12,
+      "1": 7124,
+      "2": 31844,
+      "3": 24264,
+      "4": 3260,
+      "5": 1008,
+      "6": 44,
+      "7": 4
+    },
+    "bathrooms": {
+      "1": 608,
+      "2": 47000,
+      "3": 15380,
+      "4": 3312,
+      "5": 988,
+      "6": 240,
+      "7": 32
+    },
+    "balconies": {
+      "0": 15620,
+      "1": 28060,
+      "2": 15848,
+      "3": 5956,
+      "4": 1728,
+      "5": 276,
+      "6": 52,
+      "7": 8,
+      "8": 8,
+      "9": 4
+    },
+    "built_area_m2": {
+      "mean": 127.13,
+      "median": 113.43,
+      "p05": 59.16,
+      "p95": 239.51,
+      "min": 15.19,
+      "max": 869.7
+    },
+    "site_area_m2": {
+      "mean": 154.36,
+      "median": 134.67,
+      "p05": 71.8,
+      "p95": 292.43,
+      "min": 18.61,
+      "max": 1877.96
+    }
+  }
+}
