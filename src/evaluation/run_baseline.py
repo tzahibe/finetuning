@@ -35,21 +35,28 @@ def load_fixed_sample(n: int, path: str = TEST_PATH, seed: int = SAMPLE_SEED) ->
     return [{"index": i, **rows[i]} for i in chosen]
 
 
-def load_model():
+def load_model(adapter_path: str | None = None):
+    """Loads the frozen base model, optionally wrapped with a PEFT LoRA adapter for
+    post-fine-tuning evaluation (same base model/prompts/seed either way).
+    """
     device = "mps" if torch.backends.mps.is_available() else "cpu"
     tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)
     model = AutoModelForCausalLM.from_pretrained(MODEL_ID, dtype=torch.bfloat16).to(device)
+    if adapter_path:
+        from peft import PeftModel
+
+        model = PeftModel.from_pretrained(model, adapter_path).to(device)
     model.eval()
     return tokenizer, model, device
 
 
-def generate(tokenizer, model, device, messages: list[dict]) -> str:
+def generate(tokenizer, model, device, messages: list[dict], max_new_tokens: int = MAX_NEW_TOKENS) -> str:
     prompt_text = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
     inputs = tokenizer(prompt_text, return_tensors="pt").to(device)
     with torch.no_grad():
         output_ids = model.generate(
             **inputs,
-            max_new_tokens=MAX_NEW_TOKENS,
+            max_new_tokens=max_new_tokens,
             do_sample=False,  # deterministic, greedy decoding
             temperature=None,
             top_p=None,
@@ -95,21 +102,27 @@ def evaluate_example(raw_output: str, example: dict) -> dict:
     return result
 
 
-def run_baseline(n: int, output_dir: str = "data/evaluation") -> dict:
+def run_baseline(
+    n: int,
+    output_dir: str = "data/evaluation",
+    max_new_tokens: int = MAX_NEW_TOKENS,
+    adapter_path: str | None = None,
+    output_prefix: str = "baseline_qwen2.5-coder-7b",
+) -> dict:
     Path(output_dir).mkdir(parents=True, exist_ok=True)
-    raw_path = Path(output_dir) / "baseline_qwen2.5-coder-7b_raw.jsonl"
-    results_path = Path(output_dir) / "baseline_qwen2.5-coder-7b_results.jsonl"
+    raw_path = Path(output_dir) / f"{output_prefix}_raw.jsonl"
+    results_path = Path(output_dir) / f"{output_prefix}_results.jsonl"
 
     examples = load_fixed_sample(n)
-    tokenizer, model, device = load_model()
-    print(f"Model loaded on {device}. Running {len(examples)} examples...")
+    tokenizer, model, device = load_model(adapter_path)
+    print(f"Model loaded on {device} (adapter={adapter_path}). Running {len(examples)} examples...")
 
     all_results = []
     with raw_path.open("w") as rf, results_path.open("w") as ef:
         for example in examples:
             t0 = time.time()
             messages = build_prompt(example["input"])
-            raw_output = generate(tokenizer, model, device, messages)
+            raw_output = generate(tokenizer, model, device, messages, max_new_tokens)
             elapsed = round(time.time() - t0, 1)
 
             rf.write(json.dumps({"index": example["index"], "raw_output": raw_output, "seconds": elapsed}) + "\n")
@@ -119,10 +132,10 @@ def run_baseline(n: int, output_dir: str = "data/evaluation") -> dict:
             all_results.append(result)
             print(f"  [{example['index']}] json_valid={result['json_valid']} schema_valid={result['schema_valid']} ({elapsed}s)")
 
-    return _summarize(all_results, n)
+    return _summarize(all_results, n, max_new_tokens, adapter_path)
 
 
-def _summarize(results: list[dict], n: int) -> dict:
+def _summarize(results: list[dict], n: int, max_new_tokens: int, adapter_path: str | None) -> dict:
     json_valid_n = sum(1 for r in results if r["json_valid"])
     schema_valid_n = sum(1 for r in results if r["schema_valid"])
 
@@ -137,9 +150,11 @@ def _summarize(results: list[dict], n: int) -> dict:
 
     return {
         "model": MODEL_ID,
+        "adapter_path": adapter_path,
         "sample_size": n,
         "sample_seed": SAMPLE_SEED,
         "source_file": TEST_PATH,
+        "max_new_tokens": max_new_tokens,
         "metrics": {
             "json_validity_rate": round(json_valid_n / n, 3),
             "schema_validity_rate": round(schema_valid_n / n, 3),
@@ -158,6 +173,7 @@ if __name__ == "__main__":
     import sys
 
     n = int(sys.argv[1]) if len(sys.argv) > 1 else 20
-    summary = run_baseline(n)
+    max_new_tokens = int(sys.argv[2]) if len(sys.argv) > 2 else MAX_NEW_TOKENS
+    summary = run_baseline(n, max_new_tokens=max_new_tokens)
     Path("data/reports/baseline_qwen2.5-coder-7b_report.json").write_text(json.dumps(summary, indent=2))
     print(json.dumps(summary, indent=2))

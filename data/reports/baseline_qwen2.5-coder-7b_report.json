@@ -1,54 +1,45 @@
 {
   "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "adapter_path": null,
   "sample_size": 20,
   "sample_seed": 42,
   "source_file": "data/training/architect_test.jsonl",
+  "max_new_tokens": 2048,
   "metrics": {
-    "json_validity_rate": 0.85,
-    "schema_validity_rate": 0.7,
-    "room_count_accuracy_mean": 0.922,
+    "json_validity_rate": 1.0,
+    "schema_validity_rate": 0.85,
+    "room_count_accuracy_mean": 0.925,
     "hard_constraint_satisfaction_mean": 1.0,
-    "relationship_f1_mean": 0.186,
-    "area_abs_error_m2_mean": 121.719,
-    "area_rel_error_pct_mean": 96.455
+    "relationship_f1_mean": 0.176,
+    "area_abs_error_m2_mean": 122.907,
+    "area_rel_error_pct_mean": 106.811
   },
-  "n_json_valid": 17,
-  "n_schema_valid": 14,
+  "n_json_valid": 20,
+  "n_schema_valid": 17,
+  "note": "FINAL CORRECTED BASELINE (Milestone 9 Task 1-2): rerun with max_new_tokens=2048 (was 1024) to eliminate output truncation - json_validity rose from 85% to 100% and schema_validity from 70% to 85%, exactly the 3 truncated examples. Prompts, model, sampling seed, and eval logic unchanged from the original baseline. This is the reference for before/after fine-tuning comparison.",
   "metric_denominators": {
-    "hard_constraint_satisfaction": "13/20 examples had HARD constraints (C0 examples have none); all 13 fully satisfied (1.0 each)",
-    "area_error": "17/20 (the 3 JSON-invalid examples excluded)",
-    "relationship_f1": "17/20 (the 3 JSON-invalid examples excluded)"
+    "hard_constraint_satisfaction": "13/20 examples had HARD constraints; all 13 fully satisfied (1.0 each)",
+    "area_error": "20/20 (all now JSON-valid)",
+    "relationship_f1": "20/20"
   },
-  "major_failure_modes": [
-    {
-      "mode": "Output truncation at max_new_tokens=1024",
-      "evidence": "indices 4225, 5597, 6750: raw output cut off mid-relationships-list (unbalanced braces), all mid-JSON inside a long 'relationships' array",
-      "n_affected": 3
-    },
+  "remaining_failure_modes": [
     {
       "mode": "Constraint-type/relationship-type enum confusion",
-      "evidence": "indices 730, 3331: model emits relationship: \"ADJACENCY\" (the input Constraint.type enum value) instead of \"ADJACENT\" (the correct RelationshipType enum value) - conflates the two similarly-named vocabularies that both appear in the prompt",
+      "evidence": "indices 730, 3331: model emits relationship: \"ADJACENCY\" (the input Constraint.type enum value) instead of \"ADJACENT\" (the correct RelationshipType enum value) - unchanged from the truncated run, confirms this is a genuine model limitation, not a truncation artifact",
       "n_affected": 2
     },
     {
-      "mode": "Invalid zero-value program entries",
-      "evidence": "index 5135: program[6] has count=0, area_per_room_m2=0 - a placeholder/hallucinated room entry violating the >0 schema constraint",
+      "mode": "Invalid zero-value program entry",
+      "evidence": "index 5135: program[6] has count=0, area_per_room_m2=0 - unchanged from the truncated run",
       "n_affected": 1
     },
     {
-      "mode": "Weak relationship-graph prediction (lowest metric, mean F1=0.186)",
-      "evidence": "model tends to over-generate plausible-sounding relationship edges (more ADJACENT/WINDOW_CONNECTION pairs than the target actually has) rather than matching the specific target plan's graph",
-      "n_affected": "all 17 JSON-valid examples, to varying degrees"
+      "mode": "Weak relationship-graph prediction (mean F1=0.176, essentially unchanged)",
+      "n_affected": "all 20 examples, to varying degrees"
     },
     {
-      "mode": "Large area miscalibration (mean abs error 121.7 m^2, mean relative error 96.5%)",
-      "evidence": "predicted room-area sums are frequently roughly 2x the requested brief.target_area_m2 - the model is not zero-shot-calibrated to this dataset's area convention (this is the clearest, most severe quantitative gap and the strongest case for fine-tuning)",
-      "n_affected": "17/17 JSON-valid examples with area computed"
+      "mode": "Large area miscalibration (mean abs error 122.9 m^2, mean relative error 106.8% - essentially unchanged, slightly worse)",
+      "n_affected": "20/20"
     }
-  ],
-  "strong_points": [
-    "Hard constraint satisfaction: 100% (13/13 examples that had HARD constraints)",
-    "Room count accuracy: 92.2% mean",
-    "JSON validity: 85%, schema validity: 70% - already reasonably structured zero-shot output"
   ]
 }
