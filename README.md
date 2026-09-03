@@ -19,8 +19,8 @@ Validated Floor Plan
 SVG / DXF / CAD
 ```
 
-See [.claude/tasks/SKILL.md](.claude/tasks/SKILL.md) for the full technical task
-breakdown and development roadmap.
+See [.claude/skills/tasks/SKILL.md](.claude/skills/tasks/SKILL.md) for the full
+technical task breakdown and development roadmap.
 
 ## Project layout
 
