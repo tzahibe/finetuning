@@ -1,0 +1,28 @@
+[project]
+name = "architect-ai"
+version = "0.1.0"
+description = "AI architectural planning system: user requirements + regulatory constraints -> validated floor plan"
+requires-python = ">=3.10"
+dependencies = [
+    "datasets",
+    "transformers",
+    "peft",
+    "trl",
+    "accelerate",
+    "torch",
+    "pydantic",
+    "pandas",
+    "numpy",
+    "shapely",
+    "ortools",
+    "matplotlib",
+    "pytest",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
