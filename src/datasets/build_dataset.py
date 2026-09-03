@@ -21,7 +21,7 @@ from src.validation.dataset_qa import (
 )
 
 DIFFICULTY_LEVELS = list(DifficultyLevel)
-PIPELINE_VERSION = "0.4.0"  # bump when normalization/schema/constraint logic changes
+PIPELINE_VERSION = "0.4.1"  # bump when normalization/schema/constraint logic changes
 DATASET_SOURCE = "BDivyesh/boomi-stage-a-text-spec"
 LEAKAGE_WARNING_THRESHOLD = 0.8
 
@@ -126,8 +126,28 @@ def build_dataset(
         for i in indices:
             if accepted >= n_samples:
                 break
+            row = ds[i]
             difficulty = DIFFICULTY_LEVELS[rng.randrange(len(DIFFICULTY_LEVELS))]
-            example, qa_info = build_example(ds[i], difficulty, rng)
+
+            # A single BOOMI record (plan_id 15861) has degenerate site dimensions
+            # (width_mm=depth_mm=8.0, clearly a meters/mm unit bug in that one source
+            # row -> area_m2=0.0) that fails Site's area_m2>0 schema validation. This
+            # is an isolated, confirmed source defect (1/14891 plans, 0.007%), not a
+            # pipeline bug - caught here and rejected with a clear reason rather than
+            # crashing the whole build (Task 57: never silently drop, but also never
+            # let one bad record kill generation at scale).
+            try:
+                example, qa_info = build_example(row, difficulty, rng)
+            except Exception as e:
+                rejected.append(
+                    {
+                        "plan_id": row["plan_id"],
+                        "reasons": ["processing_error"],
+                        "error": f"{type(e).__name__}: {e}",
+                    }
+                )
+                continue
+
             qa_records.append(qa_info)
 
             reasons = []

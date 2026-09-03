@@ -1,0 +1,57 @@
+{
+  "dataset_version": "0.4.1",
+  "source_dataset": "BDivyesh/boomi-stage-a-text-spec",
+  "source_split": "train",
+  "source_level": "L3",
+  "git_commit": "7d07e00",
+  "requested_samples": 1000,
+  "TOTAL_EXAMPLES": 1000,
+  "VALID_EXAMPLES": 1000,
+  "INVALID_EXAMPLES": 1,
+  "HARD_CONSTRAINT_VIOLATIONS": 0,
+  "SOFT_CONSTRAINT_TARGET_MISMATCHES": 0,
+  "UNKNOWN_TYPES": 0,
+  "DUPLICATE_RELATIONSHIPS": 0,
+  "CONTRADICTIONS": 0,
+  "SPLIT_LEAKAGE": 0,
+  "TARGET_LEAKAGE_WARNINGS": 0,
+  "AREA_ERROR_MEAN": 0.958,
+  "AREA_ERROR_P95": 2.425,
+  "AREA_ERROR_MAX": 4.897,
+  "AREA_TOLERANCE_POLICY": "abs<=5.0m2 OR rel<=5% (see docs/DATA_CONTRACT.md Area tolerance)",
+  "AREA_OUTSIDE_TOLERANCE": 0,
+  "rejection_reasons": {
+    "processing_error": 1
+  },
+  "constraint_coverage_ratio_by_difficulty": {
+    "C0": {
+      "mean": 0.0,
+      "max": 0.0,
+      "n": 224
+    },
+    "C1": {
+      "mean": 0.074,
+      "max": 0.154,
+      "n": 262
+    },
+    "C2": {
+      "mean": 0.204,
+      "max": 0.385,
+      "n": 248
+    },
+    "C3": {
+      "mean": 0.362,
+      "max": 0.533,
+      "n": 266
+    }
+  },
+  "rejected_detail": [
+    {
+      "plan_id": 15861,
+      "reasons": [
+        "processing_error"
+      ],
+      "error": "ValidationError: 1 validation error for Site\narea_m2\n  Input should be greater than 0 [type=greater_than, input_value=0.0, input_type=float]\n    For further information visit https://errors.pydantic.dev/2.13/v/greater_than"
+    }
+  ]
+}
