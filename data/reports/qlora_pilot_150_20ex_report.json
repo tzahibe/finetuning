@@ -1,0 +1,19 @@
+{
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "adapter_path": "models/architect-lora-pilot",
+  "sample_size": 20,
+  "sample_seed": 42,
+  "source_file": "data/training/architect_test.jsonl",
+  "max_new_tokens": 2048,
+  "metrics": {
+    "json_validity_rate": 1.0,
+    "schema_validity_rate": 1.0,
+    "room_count_accuracy_mean": 0.961,
+    "hard_constraint_satisfaction_mean": 0.967,
+    "relationship_f1_mean": 0.711,
+    "area_abs_error_m2_mean": 21.075,
+    "area_rel_error_pct_mean": 12.188
+  },
+  "n_json_valid": 20,
+  "n_schema_valid": 20
+}
