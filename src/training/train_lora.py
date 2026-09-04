@@ -7,8 +7,15 @@ from pathlib import Path
 
 import torch
 from datasets import Dataset
-from peft import LoraConfig, get_peft_model
-from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainerCallback, TrainingArguments
+from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
+from transformers import (
+    AutoModelForCausalLM,
+    AutoTokenizer,
+    BitsAndBytesConfig,
+    Trainer,
+    TrainerCallback,
+    TrainingArguments,
+)
 
 from src.evaluation.prompts import build_prompt
 
@@ -57,9 +64,18 @@ def _load_env_file(path: str = ".env") -> None:
             if value:
                 os.environ.setdefault(key, value)
 
-# No bitsandbytes/CUDA on this machine (Apple M1 Pro, MPS only) - bitsandbytes is
-# CUDA-only, so QLoRA (4-bit quantized base) is not available locally. Using plain
-# LoRA instead: full-precision (bf16) frozen base model + small trainable adapters.
+# QLoRA: bitsandbytes >=0.50 ships a real MPS backend (kernels-community/bitsandbytes-mps
+# hub kernels on macOS 26+, pure-PyTorch fallback otherwise) - verified working on this
+# machine (Apple M1 Pro, macOS 26.2). Earlier assumption that bitsandbytes was CUDA-only
+# was outdated as of that release; corrected here. 4-bit NF4 quantized frozen base +
+# LoRA adapters, per the standard QLoRA recipe (Dettmers et al.).
+BNB_CONFIG = BitsAndBytesConfig(
+    load_in_4bit=True,
+    bnb_4bit_quant_type="nf4",
+    bnb_4bit_compute_dtype=torch.bfloat16,
+    bnb_4bit_use_double_quant=True,
+)
+
 LORA_CONFIG = LoraConfig(
     r=16,
     lora_alpha=32,
@@ -128,7 +144,12 @@ def load_base_model_for_training():
     tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
-    model = AutoModelForCausalLM.from_pretrained(MODEL_ID, dtype=torch.bfloat16).to(device)
+    model = AutoModelForCausalLM.from_pretrained(
+        MODEL_ID,
+        quantization_config=BNB_CONFIG,
+        device_map={"": device},
+    )
+    model = prepare_model_for_kbit_training(model)
     model.gradient_checkpointing_enable()
     model.enable_input_require_grads()
     model = get_peft_model(model, LORA_CONFIG)
@@ -232,7 +253,7 @@ def run_training(
 
     return {
         "model": MODEL_ID,
-        "method": "LoRA (bf16 base, no quantization - bitsandbytes/QLoRA unavailable, no CUDA)",
+        "method": "QLoRA (4-bit NF4 quantized base via bitsandbytes MPS backend, double quant, bf16 compute dtype)",
         "wandb_run_url": wandb_run_url,
         "lora_config": {
             "r": LORA_CONFIG.r,
