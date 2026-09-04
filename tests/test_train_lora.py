@@ -1,7 +1,7 @@
 import pytest
 from transformers import AutoTokenizer
 
-from src.training.train_lora import MODEL_ID, _collate, build_training_example
+from src.training.train_lora import MODEL_ID, MPSCacheClearCallback, _collate, build_training_example
 
 
 @pytest.fixture(scope="module")
@@ -61,3 +61,17 @@ def test_collate_pads_to_longest_in_batch():
     assert out["input_ids"][1].tolist() == [1, 2, 0]
     assert out["labels"][1].tolist() == [-100, 7, -100]
     assert out["attention_mask"][1].tolist() == [1, 1, 0]
+
+
+def test_mps_cache_clear_callback_clears_on_step_end_and_evaluate(monkeypatch):
+    calls = {"empty_cache": 0, "gc_collect": 0}
+    monkeypatch.setattr("torch.backends.mps.is_available", lambda: True)
+    monkeypatch.setattr("torch.mps.empty_cache", lambda: calls.__setitem__("empty_cache", calls["empty_cache"] + 1))
+    monkeypatch.setattr("gc.collect", lambda: calls.__setitem__("gc_collect", calls["gc_collect"] + 1))
+
+    callback = MPSCacheClearCallback()
+    callback.on_step_end(args=None, state=None, control=None)
+    callback.on_evaluate(args=None, state=None, control=None)
+
+    assert calls["empty_cache"] == 2
+    assert calls["gc_collect"] == 2

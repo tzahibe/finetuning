@@ -1,3 +1,4 @@
+import gc
 import json
 import os
 import random
@@ -7,7 +8,7 @@ from pathlib import Path
 import torch
 from datasets import Dataset
 from peft import LoraConfig, get_peft_model
-from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingArguments
+from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainerCallback, TrainingArguments
 
 from src.evaluation.prompts import build_prompt
 
@@ -16,6 +17,28 @@ TRAIN_PATH = "data/training/architect_train.jsonl"
 VAL_PATH = "data/training/architect_validation.jsonl"
 MAX_SEQ_LENGTH = 1536
 WANDB_PROJECT = "architect-ai"
+
+
+class MPSCacheClearCallback(TrainerCallback):
+    """Clears PyTorch's MPS caching allocator (and runs a Python gc pass) after every
+    training step and after every evaluation. Root cause of a real incident: an
+    earlier run's swap usage climbed to 25.6/26.6GB and RAM to ~77MB free over ~16
+    steps, causing severe swap-thrashing (each step went from ~40s to 15-25 *minutes*)
+    - not a sleep/wake artifact (verified no further Wake events, caffeinate was
+    active). MPS's allocator doesn't reliably return freed blocks to the OS on its
+    own, especially across train/eval calls with differing sequence lengths, so this
+    must be forced explicitly.
+    """
+
+    def on_step_end(self, args, state, control, **kwargs):
+        if torch.backends.mps.is_available():
+            torch.mps.empty_cache()
+        gc.collect()
+
+    def on_evaluate(self, args, state, control, **kwargs):
+        if torch.backends.mps.is_available():
+            torch.mps.empty_cache()
+        gc.collect()
 
 
 def _load_env_file(path: str = ".env") -> None:
@@ -185,6 +208,7 @@ def run_training(
         train_dataset=train_ds,
         eval_dataset=val_ds,
         data_collator=lambda batch: _collate(batch, tokenizer.pad_token_id),
+        callbacks=[MPSCacheClearCallback()],
     )
 
     t0 = time.time()
