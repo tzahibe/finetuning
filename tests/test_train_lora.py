@@ -1,7 +1,16 @@
+import json
+
 import pytest
 from transformers import AutoTokenizer
 
-from src.training.train_lora import MODEL_ID, MPSCacheClearCallback, _collate, build_training_example
+from src.training.train_lora import (
+    MODEL_ID,
+    MPSCacheClearCallback,
+    _collate,
+    build_training_example,
+    detect_overfitting,
+    load_sample,
+)
 
 
 @pytest.fixture(scope="module")
@@ -75,3 +84,41 @@ def test_mps_cache_clear_callback_clears_on_step_end_and_evaluate(monkeypatch):
 
     assert calls["empty_cache"] == 2
     assert calls["gc_collect"] == 2
+
+
+def test_load_sample_n_none_returns_every_row(tmp_path):
+    path = tmp_path / "rows.jsonl"
+    path.write_text("\n".join(json.dumps({"i": i}) for i in range(37)) + "\n")
+    rows = load_sample(str(path), n=None, seed=1)
+    assert len(rows) == 37
+    assert {r["i"] for r in rows} == set(range(37))
+
+
+def test_load_sample_n_given_subsamples(tmp_path):
+    path = tmp_path / "rows.jsonl"
+    path.write_text("\n".join(json.dumps({"i": i}) for i in range(37)) + "\n")
+    rows = load_sample(str(path), n=5, seed=1)
+    assert len(rows) == 5
+
+
+def test_detect_overfitting_flags_clear_case():
+    result = detect_overfitting(
+        eval_loss_history=[0.5, 0.3, 0.2, 0.35],  # min at checkpoint 3, degrades after
+        train_loss_history=[0.6, 0.4, 0.2, 0.1],  # still improving
+    )
+    assert result["overfitting_detected"] is True
+    assert result["min_eval_loss_at_checkpoint"] == 3
+
+
+def test_detect_overfitting_no_flag_when_eval_still_improving():
+    result = detect_overfitting(
+        eval_loss_history=[0.5, 0.3, 0.2, 0.15],
+        train_loss_history=[0.6, 0.4, 0.2, 0.1],
+    )
+    assert result["overfitting_detected"] is False
+
+
+def test_detect_overfitting_insufficient_data():
+    result = detect_overfitting(eval_loss_history=[0.3], train_loss_history=[0.5, 0.3])
+    assert result["overfitting_detected"] is False
+    assert "fewer than 2" in result["reason"]
