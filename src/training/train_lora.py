@@ -156,7 +156,7 @@ def run_training(
             "r": LORA_CONFIG.r,
             "lora_alpha": LORA_CONFIG.lora_alpha,
             "lora_dropout": LORA_CONFIG.lora_dropout,
-            "target_modules": LORA_CONFIG.target_modules,
+            "target_modules": list(LORA_CONFIG.target_modules),
         },
         "n_train": len(train_ds),
         "n_val": len(val_ds),
