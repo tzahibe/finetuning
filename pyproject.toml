@@ -20,6 +20,8 @@ dependencies = [
     "wandb",
     "bitsandbytes",
     "kernels",
+    "plotly",
+    "kaleido",
 ]
 
 [build-system]
