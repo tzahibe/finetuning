@@ -17,6 +17,7 @@ dependencies = [
     "ortools",
     "matplotlib",
     "pytest",
+    "wandb",
 ]
 
 [build-system]

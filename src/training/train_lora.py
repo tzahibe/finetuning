@@ -1,4 +1,5 @@
 import json
+import os
 import random
 import time
 from pathlib import Path
@@ -14,6 +15,24 @@ MODEL_ID = "Qwen/Qwen2.5-Coder-7B-Instruct"
 TRAIN_PATH = "data/training/architect_train.jsonl"
 VAL_PATH = "data/training/architect_validation.jsonl"
 MAX_SEQ_LENGTH = 1536
+WANDB_PROJECT = "architect-ai"
+
+
+def _load_env_file(path: str = ".env") -> None:
+    """Loads KEY=VALUE lines from .env into os.environ (only if not already set) -
+    wandb/huggingface_hub read their tokens from the environment, and .env is not
+    auto-loaded by the shell in a background job.
+    """
+    if not os.path.exists(path):
+        return
+    with open(path) as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, value = line.split("=", 1)
+            if value:
+                os.environ.setdefault(key, value)
 
 # No bitsandbytes/CUDA on this machine (Apple M1 Pro, MPS only) - bitsandbytes is
 # CUDA-only, so QLoRA (4-bit quantized base) is not available locally. Using plain
@@ -105,12 +124,42 @@ def run_training(
     gradient_accumulation_steps: int = 8,
     eval_steps: int | None = None,
     max_steps: int = -1,
+    use_wandb: bool = True,
+    run_name: str | None = None,
 ) -> dict:
     tokenizer, model, device = load_base_model_for_training()
     train_ds, val_ds = prepare_datasets(tokenizer, n_train, n_val, seed)
 
     if eval_steps is None:
         eval_steps = max(1, len(train_ds) // per_device_train_batch_size // gradient_accumulation_steps // 5)
+
+    _load_env_file()
+    wandb_enabled = use_wandb and bool(os.environ.get("WANDB_API_KEY"))
+    if use_wandb and not wandb_enabled:
+        print("WANDB_API_KEY not found in environment/.env - continuing without W&B logging.")
+    if wandb_enabled:
+        import wandb
+
+        run_name = run_name or f"lora-n{n_train}-r{LORA_CONFIG.r}-lr{learning_rate}"
+        wandb.init(
+            project=WANDB_PROJECT,
+            name=run_name,
+            config={
+                "model": MODEL_ID,
+                "n_train": n_train,
+                "n_val": n_val,
+                "seed": seed,
+                "num_train_epochs": num_train_epochs,
+                "learning_rate": learning_rate,
+                "per_device_train_batch_size": per_device_train_batch_size,
+                "gradient_accumulation_steps": gradient_accumulation_steps,
+                "lora_r": LORA_CONFIG.r,
+                "lora_alpha": LORA_CONFIG.lora_alpha,
+                "lora_dropout": LORA_CONFIG.lora_dropout,
+                "lora_target_modules": list(LORA_CONFIG.target_modules),
+                "max_seq_length": MAX_SEQ_LENGTH,
+            },
+        )
 
     args = TrainingArguments(
         output_dir=output_dir,
@@ -125,7 +174,8 @@ def run_training(
         eval_steps=eval_steps,
         save_strategy="no",
         bf16=False,  # weights already bf16 via dtype=; avoid Trainer's amp path on MPS
-        report_to="none",
+        report_to="wandb" if wandb_enabled else "none",
+        run_name=run_name if wandb_enabled else None,
         remove_unused_columns=False,
     )
 
@@ -141,6 +191,13 @@ def run_training(
     train_result = trainer.train()
     elapsed = time.time() - t0
 
+    wandb_run_url = None
+    if wandb_enabled:
+        import wandb
+
+        wandb_run_url = wandb.run.url if wandb.run else None
+        wandb.finish()
+
     Path(output_dir).mkdir(parents=True, exist_ok=True)
     model.save_pretrained(output_dir)
     tokenizer.save_pretrained(output_dir)
@@ -152,6 +209,7 @@ def run_training(
     return {
         "model": MODEL_ID,
         "method": "LoRA (bf16 base, no quantization - bitsandbytes/QLoRA unavailable, no CUDA)",
+        "wandb_run_url": wandb_run_url,
         "lora_config": {
             "r": LORA_CONFIG.r,
             "lora_alpha": LORA_CONFIG.lora_alpha,

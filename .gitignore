@@ -13,4 +13,5 @@ data/training/*
 !data/training/.gitkeep
 !data/training/README.md
 models/
+wandb/
 .DS_Store
